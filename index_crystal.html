@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="کهاته سلطان">
+<meta name="theme-color" content="#ff1010">
+<link rel="apple-touch-icon" href="sultan-icon-bright.png?v=4">
+<link rel="icon" href="sultan-icon-bright.png?v=4">
+<link rel="manifest" href="manifest.json">
+<title>دفتر کهاته سلطان</title>
+<style>
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{--primary:#ff1010;--bg:#ede7df;--card:#fcf9f5;--border:#b8a898;--green:#15803d;--blue:#1a56db;--red:#b91c1c;--accent:#c40d0d}
+*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Tahoma,sans-serif;margin:0;padding:0}
+body{background:var(--bg);padding:10px;font-size:14px;color:#333;max-width:480px;margin:0 auto}
+.header{background:var(--primary);color:#fff;padding:12px;text-align:center;border-radius:10px;font-size:20px;font-weight:bold;border:2px solid var(--accent)}
+/* ==== هدر با تصویر اصلی ==== */
+.brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  /* آدرس عکس رو اینجا بذار */
+  background-image: url('assets/image_001.jpg');
+  background-size: cover; /* عکس کل فضا رو بپوشونه */
+  background-position: center; /* عکس وسط‌چین باشه */
+  background-repeat: no-repeat;
+
+  /* ابعاد و ظاهر */
+  width: 100%;
+  min-height: 160px; /* ارتفاع مناسب برای نمایش کامل عکس */
+  border: 3px solid #d4af37; /* قاب طلایی دور عکس */
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5); /* سایه برای حالت سه‌بعدی */
+  position: relative;
+  overflow: hidden;
+}
+
+/* چون متن‌ها و تاج داخل خود عکس هستند، این‌ها رو مخفی می‌کنیم */
+.brand-logo,
+.brand-copy {
+  display: none !important;
+}
+.page-title{text-align:center;color:var(--primary);font-weight:bold;margin:12px 0 8px;font-size:17px}
+
+/* ==== دکمه‌های سه‌بعدی براق ==== */
+.backup-bar{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-bottom:12px;
+  padding:12px;
+  background:linear-gradient(180deg,#fdf6ec,#f5e9d6);
+  border:1.5px solid var(--border);
+  border-radius:16px;
+}
+.backup-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-height:52px;
+  padding:10px 6px;
+  border:2px solid rgba(255,255,255,.95);
+  border-radius:14px;
+  font-size:11.5px;
+  font-weight:bold;
+  color:#fff;
+  cursor:pointer;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+  box-shadow:
+    0 5px 0 rgba(0,0,0,.3),
+    0 8px 15px rgba(0,0,0,.25),
+    inset 0 4px 6px rgba(255,255,255,.6),
+    inset 0 -4px 8px rgba(0,0,0,.3);
+  transition:transform .08s, box-shadow .08s;
+  position:relative;
+  overflow:hidden;
+}
+.backup-btn::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:45%;
+  background:linear-gradient(180deg,rgba(255,255,255,.4) 0%,rgba(255,255,255,0) 100%);
+  pointer-events:none;
+  border-radius:12px 12px 0 0;
+}
+.backup-btn:active{
+  transform:translateY(5px);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,.3),
+    0 2px 5px rgba(0,0,0,.2),
+    inset 0 2px 3px rgba(255,255,255,.5);
+}
+.backup-btn .ico{font-size:18px;line-height:1;filter:drop-shadow(0 1px 1px rgba(0,0,0,.4));position:relative;z-index:2;}
+.backup-btn span:not(.ico){position:relative;z-index:2;}
+.backup-btn.orange{background-image:url('assets/image_002.png');background-size:cover;background-position:center;background-color:#e65c00;border-color:transparent;}
+.backup-btn.green {background-image:url('assets/image_003.png');background-size:cover;background-position:center;background-color:#0d8c3a;border-color:transparent;}
+.backup-btn.blue  {background-image:url('assets/image_004.png');background-size:cover;background-position:center;background-color:#0d5ecb;border-color:transparent;}
+.backup-btn.purple{background-image:url('assets/image_005.png');background-size:cover;background-position:center;background-color:#6b1fd4;border-color:transparent;}
+.backup-btn.brown {background-image:url('assets/image_006.png');background-size:cover;background-position:center;background-color:#3d2312;border-color:transparent;}
+.backup-btn.indigo{background-image:url('assets/image_007.png');background-size:cover;background-position:center;background-color:#441aa8;border-color:transparent;}
+.backup-btn.teal  {background-image:url('assets/image_008.png');background-size:cover;background-position:center;background-color:#088a80;border-color:transparent;}
+.backup-btn.gold  {background-image:url('assets/image_009.png');background-size:cover;background-position:center;background-color:#d49500;border-color:transparent;}
+.backup-btn.red   {background-image:url('assets/image_010.png');background-size:cover;background-position:center;background-color:#b80000;border-color:transparent;}
+.backup-btn.pink  {background-image:url('assets/image_011.png');background-size:cover;background-position:center;background-color:#c2266b;border-color:transparent;}
+.backup-btn.slate {background-image:url('assets/image_012.png');background-size:cover;background-position:center;background-color:#3f4f63;border-color:transparent;}
+.backup-btn.night {background-image:url('assets/image_013.png');background-size:cover;background-position:center;background-color:#1c1c3a;border-color:transparent;}
+
+.search{width:100%;height:42px;border:1.5px solid var(--border);border-radius:10px;padding:8px 12px;font-size:15px;background:#fff;margin-bottom:8px;box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.search:focus{outline:2px solid var(--primary)}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:8px 0}
+.card{
+  position:relative;
+  overflow:hidden;
+  border-radius:14px;
+  text-align:center;
+  padding:10px 6px 8px;
+  border:2px solid rgba(255,255,255,.85);
+  box-shadow:
+    0 4px 0 rgba(0,0,0,.18),
+    0 6px 12px rgba(0,0,0,.16),
+    inset 0 2px 0 rgba(255,255,255,.55),
+    inset 0 -3px 6px rgba(0,0,0,.12);
+}
+.card .icon-bubble{
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 4px;font-size:14px;
+  background:rgba(255,255,255,.55);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.15),0 1px 2px rgba(255,255,255,.6);
+}
+.card .label{font-size:11px;font-weight:bold;text-shadow:0 1px 1px rgba(255,255,255,.4)}
+.card .value{display:block;font-size:12px;font-weight:bold;margin-top:4px;line-height:1.3;text-shadow:0 1px 1px rgba(255,255,255,.4)}
+.card.green{background:linear-gradient(180deg,#b9f6c8,#4cd97b);}
+.card.green .label,.card.green .value{color:#0d5c26}
+.card.blue{background:linear-gradient(180deg,#bfe0ff,#5cb8ff);}
+.card.blue .label,.card.blue .value{color:#0d3f8f}
+.card.red{background:linear-gradient(180deg,#ffc9c9,#ff5252);}
+.card.red .label,.card.red .value{color:#7f0d0d}
+.table-wrapper{overflow-x:hidden;background:var(--card);border:1.5px solid var(--border);border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,.08)}
+table.custom-table{width:100%;border-collapse:collapse;table-layout:fixed}
+table.custom-table th,table.custom-table td{border:1px solid var(--border);padding:6px 2px;text-align:center;font-size:10.5px;vertical-align:middle;word-break:break-word;overflow-wrap:break-word}
+table.custom-table th{
+  background:linear-gradient(180deg,#a86bff,#5b1fbf);
+  color:#fff;
+  font-weight:bold;
+  text-shadow:0 1px 1px rgba(0,0,0,.5);
+  border-top:2px solid #d1b3ff;
+  border-bottom:2px solid #3a1078;
+}
+table.custom-table tbody tr{cursor:pointer}
+table.custom-table tbody tr:active{background:#f0e8dd}
+.amt-num{display:block;direction:ltr;white-space:nowrap}
+.custom-table .amt-num{font-size:9.5px;letter-spacing:-.3px}
+.custom-table .amt-cur{font-size:8px}
+.amt-cur{display:block;font-size:.85em;opacity:.8;font-weight:normal}
+.amt-sep{height:4px}
+.cell-phone{color:#000;font-weight:bold;direction:ltr}
+.cell-receipt{color:var(--green);font-weight:bold}
+.cell-debt{color:var(--blue);font-weight:bold}
+.cell-remaining{color:var(--red);font-weight:bold}
+
+/* ==== دکمه شناور + قرمز براق ==== */
+.fab{
+  position:fixed;bottom:20px;left:50%;
+  width:66px;height:66px;
+  border:3px solid #fff;border-radius:50%;
+  background:linear-gradient(180deg,#ff5252,#b80000);
+  color:#fff;font-size:36px;z-index:100;cursor:pointer;
+  box-shadow:
+    0 6px 0 rgba(0,0,0,.3),
+    0 8px 18px rgba(0,0,0,.35),
+    inset 0 3px 0 rgba(255,255,255,.45),
+    inset 0 -4px 8px rgba(0,0,0,.3);
+  transition:transform .1s, box-shadow .1s;
+  display:flex;align-items:center;justify-content:center;
+  line-height:1;padding-bottom:4px;
+  transform:translateX(-50%);
+}
+.fab:active{
+  transform:translateX(-50%) translateY(5px);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,.3),
+    0 3px 8px rgba(0,0,0,.3),
+    inset 0 2px 0 rgba(255,255,255,.3);
+}
+
+.detail{display:none;position:fixed;inset:0;background:var(--bg);z-index:200;overflow:auto;padding:8px}
+.detail.active{display:block}
+.dh{
+  background:linear-gradient(180deg,#ff2a2a,#c40d0d);
+  color:#fff;padding:8px;border-radius:12px;display:flex;align-items:center;margin-bottom:8px;
+  border:2px solid #fff;
+  box-shadow:0 4px 0 rgba(0,0,0,.25),0 6px 12px rgba(0,0,0,.25),inset 0 2px 0 rgba(255,255,255,.4),inset 0 -3px 6px rgba(0,0,0,.25);
+}
+.dh button{background:0;border:0;color:#fff;font-size:24px;width:40px;height:40px;cursor:pointer;border-radius:8px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.dh button:active{background:rgba(255,255,255,.25)}
+.dh span{flex:1;text-align:center;font-weight:bold;font-size:16px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+
+.info{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:10px;margin:8px 0;box-shadow:0 2px 4px rgba(0,0,0,.06)}
+.info-row{display:flex;align-items:flex-start;gap:10px}
+.info-fields{flex:1;min-width:0;display:flex;flex-direction:column}
+.field-line{display:flex;align-items:center;gap:6px;padding:7px 0;border-bottom:1px dashed #d8ccbc;font-size:13px}
+.field-line:last-child{border-bottom:0}
+.field-label{font-weight:bold;color:#4a3728;flex:0 0 auto;white-space:nowrap}
+.field-val{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#555;font-size:12.5px}
+.field-btn{width:24px;height:24px;flex:0 0 24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer;box-shadow:inset 0 1px 2px rgba(255,255,255,.7),0 1px 2px rgba(0,0,0,.15)}
+.field-edit{background:linear-gradient(180deg,#cfe4ff,#9cc3f5)}
+.field-call{background:linear-gradient(180deg,#b9f6c8,#4cd97b)}
+.field-map{background:linear-gradient(180deg,#cfe0ff,#a7c7ff)}
+.icon-dot{width:26px;height:26px;flex:0 0 26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:inset 0 1px 2px rgba(255,255,255,.7),0 1px 2px rgba(0,0,0,.15)}
+.icon-dot.name{background:linear-gradient(180deg,#ffd7d7,#ffb0b0)}
+.icon-dot.addr{background:linear-gradient(180deg,#cfe0ff,#a7c7ff)}
+.icon-dot.phone{background:linear-gradient(180deg,#c8f5d6,#9fe8b7)}
+.icon-dot.khata{background:linear-gradient(180deg,#ead7ff,#c7a5f4)}
+
+.info-avatar-col{flex:0 0 auto}
+.info-avatar{width:78px;height:78px;border-radius:50%;overflow:hidden;position:relative;cursor:pointer;border:3px solid #fff;background:linear-gradient(180deg,#f2ede4,#e2d8c8);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 0 rgba(0,0,0,.18),0 6px 12px rgba(0,0,0,.2),inset 0 2px 0 rgba(255,255,255,.5)}
+.info-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.info-avatar .placeholder-ico{font-size:32px;color:#a89478}
+.info-avatar .cam-badge{position:absolute;bottom:-2px;left:-2px;width:24px;height:24px;border-radius:50%;background:linear-gradient(180deg,#ffb35c,#e65c00);display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.25)}
+
+.photo-viewer{display:none;position:fixed;inset:0;background:#000;z-index:1500;align-items:center;justify-content:center}
+.photo-viewer.active{display:flex}
+.photo-viewer img{max-width:100%;max-height:100%;object-fit:contain}
+.photo-viewer .pv-close{position:absolute;top:14px;left:14px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1.5px solid rgba(255,255,255,.4)}
+.photo-viewer .pv-actions{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:10px}
+.photo-viewer .pv-actions button{border:2px solid rgba(255,255,255,.9);border-radius:10px;padding:10px 16px;font-weight:bold;color:#fff;cursor:pointer;font-size:13px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+
+.detail-bottom-bar{position:sticky;bottom:0;display:flex;justify-content:center;gap:14px;padding:10px 0 2px;margin-top:10px}
+.round-btn{
+  width:52px;height:52px;border-radius:50%;position:relative;
+  border:2px solid rgba(255,255,255,.9);
+  background:linear-gradient(180deg,#ffffff,#e7e2d8);
+  display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;
+  box-shadow:0 4px 0 rgba(0,0,0,.18),0 6px 12px rgba(0,0,0,.16),inset 0 2px 0 rgba(255,255,255,.6),inset 0 -3px 6px rgba(0,0,0,.08);
+  transition:transform .08s, box-shadow .08s;
+}
+.round-btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.4)}
+.round-btn .badge{position:absolute;top:-3px;left:-3px;background:var(--red);color:#fff;font-size:10px;font-weight:bold;min-width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #fff}
+.balance{
+  background:linear-gradient(180deg,#fff5f5,#ffe0e0);
+  border:1.5px solid #f5b8b8;border-radius:12px;padding:12px;margin:8px 0;text-align:center;font-weight:bold;font-size:15px;color:var(--primary);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.08);
+}
+
+/* ==== دکمه‌های رسید/قرض براق ==== */
+.actions{display:flex;gap:8px;margin:10px 0 90px}
+.actions button{
+  flex:1;border:2px solid rgba(255,255,255,.9);border-radius:14px;color:#fff;padding:14px;font-weight:bold;cursor:pointer;font-size:14px;
+  text-shadow:0 1px 2px rgba(0,0,0,.4);
+  box-shadow:
+    0 4px 0 rgba(0,0,0,.25),
+    0 6px 12px rgba(0,0,0,.22),
+    inset 0 2px 0 rgba(255,255,255,.4),
+    inset 0 -3px 6px rgba(0,0,0,.2);
+  transition:transform .08s, box-shadow .08s;
+}
+.actions button:active{
+  transform:translateY(4px);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,.25),
+    0 2px 5px rgba(0,0,0,.2),
+    inset 0 1px 0 rgba(255,255,255,.3);
+}
+.btn-receipt{background:linear-gradient(180deg,#4cd97b,#0d8c3a)}
+.btn-debt{background:linear-gradient(180deg,#5cb8ff,#0d5ecb)}
+
+.modalbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:12px}
+.modalbg.active{display:flex}
+.modal{background:var(--card);width:100%;max-width:400px;border-radius:16px;padding:16px;max-height:90vh;overflow:auto;border:2px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.modal h3{text-align:center;color:var(--primary);margin:0 0 10px;font-size:16px;border-bottom:1.5px solid #dcd0c0;padding-bottom:6px}
+.modal label{display:block;font-weight:bold;margin-top:8px;font-size:12px}
+.modal input,.modal select{width:100%;height:40px;border:1.5px solid #a39382;border-radius:8px;padding:6px 10px;font-size:14px;margin:3px 0;background:#fff;box-shadow:inset 0 2px 3px rgba(0,0,0,.06)}
+.modal input:focus,.modal select:focus{outline:2px solid var(--primary)}
+.buttons{display:flex;gap:6px;margin-top:14px}
+.buttons button{
+  flex:1;min-height:44px;border:2px solid rgba(255,255,255,.9);border-radius:10px;font-weight:bold;cursor:pointer;font-size:13px;color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,.4);
+  box-shadow:
+    0 3px 0 rgba(0,0,0,.22),
+    0 4px 10px rgba(0,0,0,.18),
+    inset 0 2px 0 rgba(255,255,255,.4),
+    inset 0 -2px 4px rgba(0,0,0,.18);
+  transition:transform .08s, box-shadow .08s;
+}
+.buttons button:active{
+  transform:translateY(3px);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.3);
+}
+.cancel{background:linear-gradient(180deg,#f0f0f0,#d4d4d4);color:#333;text-shadow:none;border-color:rgba(255,255,255,.7)}
+.confirm{background:linear-gradient(180deg,#ff5252,#b80000)}
+.confirm.blue{background:linear-gradient(180deg,#5cb8ff,#0d5ecb)}
+.confirm.green{background:linear-gradient(180deg,#4cd97b,#0d8c3a)}
+.confirm.red{background:linear-gradient(180deg,#ff5252,#b80000)}
+
+.toast{display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 18px;border-radius:10px;z-index:9999;font-size:12px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.toast.show{display:block}
+.toast.error{background:var(--red)}
+.toast.success{background:var(--green)}
+.section-divider{border-top:2px dashed var(--border);margin:10px 0 4px;padding-top:6px;font-weight:bold;color:var(--primary);font-size:12px}
+button{touch-action:manipulation}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+.empty-state{padding:24px 12px!important;color:#777;font-size:13px}
+
+/* ===== طراحی جدید دستیار هوش مصنوعی ===== */
+.chat-fab{
+  position:fixed;bottom:20px;right:20px;width:64px;height:64px;border:3px solid #fff;border-radius:50%;
+  background:linear-gradient(145deg,#7c3aed,#4f46e5);
+  color:#fff;z-index:100;cursor:pointer;
+  box-shadow:0 6px 0 rgba(0,0,0,.28),0 9px 18px rgba(0,0,0,.25),inset 0 3px 0 rgba(255,255,255,.45);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .08s,box-shadow .08s;
+  overflow:hidden;
+}
+.chat-fab .bot-avatar{
+  width:47px;height:47px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,#fff,#e9e2d7);
+  border:2px solid rgba(255,255,255,.95);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.12),0 2px 5px rgba(0,0,0,.18);
+  font-size:29px;
+}
+.chat-fab .bot-crown{
+  position:absolute;top:1px;right:5px;font-size:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35));
+}
+.chat-fab:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.28),0 4px 9px rgba(0,0,0,.25),inset 0 2px 0 rgba(255,255,255,.3)}
+
+.chat-panel{display:none;position:fixed;inset:0;background:linear-gradient(180deg,#f4efe8,#ede7df);z-index:300;flex-direction:column}
+.chat-panel.active{display:flex}
+.chat-header{
+  background:linear-gradient(180deg,#7c3aed,#4f46e5);color:#fff;padding:8px 9px;border-radius:15px;
+  display:flex;align-items:center;margin:8px;border:2px solid #fff;
+  box-shadow:0 5px 0 rgba(0,0,0,.22),0 8px 15px rgba(0,0,0,.18),inset 0 2px 0 rgba(255,255,255,.35);
+}
+.chat-header .chat-avatar{
+  width:40px;height:40px;min-width:40px;border-radius:50%;background:linear-gradient(145deg,#fff,#e9e2d7);
+  display:flex;align-items:center;justify-content:center;font-size:24px;border:2px solid #fff;
+  box-shadow:0 2px 5px rgba(0,0,0,.2);position:relative;
+}
+.chat-header .chat-avatar:after{content:"👑";position:absolute;right:-4px;top:-8px;font-size:15px}
+.chat-header .chat-title{flex:1;text-align:right;padding:0 9px;font-weight:bold;font-size:15px;line-height:1.3}
+.chat-header .chat-status{display:block;font-size:10px;font-weight:normal;opacity:.9;margin-top:2px}
+.chat-header button{background:0;border:0;color:#fff;font-size:24px;width:40px;height:40px;cursor:pointer;border-radius:8px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.chat-header button:active{background:rgba(255,255,255,.25)}
+.chat-messages{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:10px}
+.chat-msg{max-width:82%;padding:10px 13px;border-radius:15px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-wrap:break-word;position:relative}
+.chat-msg.user{align-self:flex-end;background:linear-gradient(180deg,#5cb8ff,#0d5ecb);color:#fff;border-bottom-left-radius:4px;box-shadow:0 3px 6px rgba(0,0,0,.15)}
+.chat-msg.assistant{align-self:flex-start;background:#fffaf4;border:1.5px solid #d7c8b7;color:#333;border-bottom-right-radius:4px;box-shadow:0 3px 7px rgba(0,0,0,.10);padding-left:14px}
+.chat-msg.assistant:before{content:"🤖";position:absolute;right:-31px;bottom:0;width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #d7c8b7;font-size:15px;box-shadow:0 2px 4px rgba(0,0,0,.12)}
+.chat-msg.error{align-self:center;background:#fdecea;color:var(--red);border:1px solid #f5c2c0;font-size:12px}
+.chat-msg.thinking{align-self:flex-start;background:#fffaf4;border:1px solid #d7c8b7;color:#888;font-style:italic}
+.chat-msg.tool{align-self:flex-start;background:#eef2ff;border:1px dashed #94a3b8;color:#475569;font-size:12px}
+.chat-inputbar{display:flex;gap:7px;padding:9px;background:#fffaf4;border-top:1.5px solid #d7c8b7;box-shadow:0 -3px 10px rgba(0,0,0,.06)}
+.chat-inputbar textarea{flex:1;resize:none;border:1.5px solid #c9b8a7;border-radius:13px;padding:9px 11px;font-size:14px;min-height:42px;max-height:100px;font-family:inherit;box-shadow:inset 0 2px 3px rgba(0,0,0,.06)}
+.chat-inputbar textarea:focus{outline:2px solid #7c3aed}
+.chat-send{
+  width:48px;border:2px solid rgba(255,255,255,.9);border-radius:13px;color:#fff;font-size:20px;cursor:pointer;
+  background:linear-gradient(180deg,#7c3aed,#4f46e5);
+  box-shadow:0 4px 0 rgba(0,0,0,.25),inset 0 2px 0 rgba(255,255,255,.4);
+  transition:transform .08s;
+}
+.chat-send:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.chat-send:disabled{opacity:.5}
+.chat-clear{background:0;border:0;color:#fff;font-size:13px;text-decoration:underline;cursor:pointer;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.chat-empty{color:#777;font-size:13px;text-align:center;padding:30px 12px;background:rgba(255,255,255,.55);border-radius:16px;margin:10px;border:1px solid #d7c8b7}
+.chat-empty .empty-avatar{font-size:48px;display:block;margin-bottom:8px}
+
+.chat-fab{
+  position:fixed;bottom:20px;right:20px;width:58px;height:58px;border:3px solid #fff;border-radius:50%;
+  background:linear-gradient(180deg,#5cb8ff,#0d5ecb);
+  color:#fff;font-size:26px;z-index:100;cursor:pointer;
+  box-shadow:
+    0 5px 0 rgba(0,0,0,.3),
+    0 7px 16px rgba(0,0,0,.32),
+    inset 0 3px 0 rgba(255,255,255,.45),
+    inset 0 -4px 8px rgba(0,0,0,.3);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .08s, box-shadow .08s;
+}
+.chat-fab:active{
+  transform:translateY(4px);
+  box-shadow:0 1px 0 rgba(0,0,0,.3),0 3px 8px rgba(0,0,0,.3),inset 0 2px 0 rgba(255,255,255,.3);
+}
+.chat-panel{display:none;position:fixed;inset:0;background:var(--bg);z-index:300;flex-direction:column}
+.chat-panel.active{display:flex}
+.chat-header{background:linear-gradient(180deg,#3d8cd6,#1e4e7f);color:#fff;padding:8px;border-radius:12px;display:flex;align-items:center;margin:8px;border:2px solid #fff;box-shadow:0 4px 0 rgba(0,0,0,.25),0 6px 12px rgba(0,0,0,.25),inset 0 2px 0 rgba(255,255,255,.35)}
+.chat-header button{background:0;border:0;color:#fff;font-size:24px;width:40px;height:40px;cursor:pointer;border-radius:8px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.chat-header button:active{background:rgba(255,255,255,.25)}
+.chat-header span{flex:1;text-align:center;font-weight:bold;font-size:16px;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.chat-messages{flex:1;overflow-y:auto;padding:0 10px;display:flex;flex-direction:column;gap:8px}
+.chat-msg{max-width:85%;padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word}
+.chat-msg.user{align-self:flex-end;background:linear-gradient(180deg,#5cb8ff,#0d5ecb);color:#fff;border-bottom-left-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+.chat-msg.assistant{align-self:flex-start;background:var(--card);border:1px solid var(--border);color:#333;border-bottom-right-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.08)}
+.chat-msg.error{align-self:center;background:#fdecea;color:var(--red);border:1px solid #f5c2c0;font-size:12px}
+.chat-msg.thinking{align-self:flex-start;background:var(--card);border:1px solid var(--border);color:#888;font-style:italic}
+.chat-msg.tool{align-self:flex-start;background:#eef2ff;border:1px dashed #94a3b8;color:#475569;font-size:12px}
+.chat-inputbar{display:flex;gap:6px;padding:8px;background:var(--card);border-top:1.5px solid var(--border)}
+.chat-inputbar textarea{flex:1;resize:none;border:1.5px solid var(--border);border-radius:10px;padding:8px 10px;font-size:14px;min-height:42px;max-height:100px;font-family:inherit;box-shadow:inset 0 2px 3px rgba(0,0,0,.06)}
+.chat-inputbar textarea:focus{outline:2px solid #2b6cb0}
+.chat-send{
+  width:48px;border:2px solid rgba(255,255,255,.9);border-radius:10px;color:#fff;font-size:20px;cursor:pointer;
+  background:linear-gradient(180deg,#5cb8ff,#0d5ecb);
+  box-shadow:0 3px 0 rgba(0,0,0,.25),inset 0 2px 0 rgba(255,255,255,.4);
+  transition:transform .08s;
+}
+.chat-send:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.chat-send:disabled{opacity:.5}
+.chat-clear{background:0;border:0;color:#fff;font-size:13px;text-decoration:underline;cursor:pointer;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.chat-empty{color:#888;font-size:13px;text-align:center;padding:30px 12px}
+
+/* ===== قفل برنامه ===== */
+.lock-screen{position:fixed;inset:0;background:linear-gradient(180deg,#ff2a2a,#c40d0d);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px}
+.lock-screen.hidden{display:none}
+.lock-box{background:var(--card);color:#333;border-radius:16px;padding:22px 18px;width:100%;max-width:320px;text-align:center;border:2px solid #fff;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.lock-box h2{color:var(--primary);margin-bottom:6px;font-size:18px}
+.lock-box p{font-size:12px;color:#666;margin-bottom:8px}
+.lock-box input{width:100%;height:46px;border:1.5px solid var(--border);border-radius:10px;text-align:center;font-size:22px;letter-spacing:8px;margin:6px 0;direction:ltr;box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.lock-box input:focus{outline:2px solid var(--primary)}
+.lock-box button{
+  width:100%;height:48px;border:2px solid rgba(255,255,255,.9);border-radius:12px;color:#fff;font-weight:bold;font-size:15px;cursor:pointer;margin-top:8px;
+  background:linear-gradient(180deg,#ff5252,#b80000);
+  text-shadow:0 1px 2px rgba(0,0,0,.4);
+  box-shadow:0 4px 0 rgba(0,0,0,.25),0 6px 12px rgba(0,0,0,.22),inset 0 2px 0 rgba(255,255,255,.4);
+}
+.lock-box button:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.3)}
+.lock-msg{font-size:12px;color:var(--red);min-height:16px;margin-top:4px}
+.lock-sub{font-size:12px;color:#777;margin-top:14px}
+.lock-sub a{color:var(--blue);cursor:pointer;text-decoration:underline}
+
+/* ===== نسخه دسکتاپ / لپ‌تاپ ===== */
+@media (min-width:1000px){
+  body{
+    max-width:1320px;
+    padding:28px 34px 60px;
+    font-size:15px;
+    display:grid;
+    grid-template-columns:330px 1fr;
+    column-gap:26px;
+    row-gap:16px;
+    align-items:start;
+  }
+  .header{grid-column:1/3;grid-row:1;font-size:25px;padding:18px;border-radius:16px}
+  .brand-logo{width:72px;height:40px;flex:0 0 40px}
+  .brand-logo svg{width:66px;height:38px}
+  .brand-name{font-size:25px}
+  .brand-subtitle{font-size:13px}
+  .page-title{grid-column:2;grid-row:2;font-size:21px;margin:0;text-align:right}
+  .backup-bar{grid-column:1;grid-row:2/7;grid-template-columns:1fr;gap:9px;margin-bottom:0;padding:12px}
+  .backup-btn{font-size:13.5px;padding:13px 14px;min-height:54px;justify-content:flex-start;border-radius:14px;direction:rtl}
+  .backup-btn .ico{font-size:22px}
+  #search{grid-column:1;grid-row:7}
+  .search{height:48px;font-size:15px;margin-bottom:0}
+  #summary{grid-column:1;grid-row:8}
+  .summary{grid-template-columns:repeat(3,1fr);gap:8px;margin:0}
+  .card{padding:12px 5px}
+  .card .label{font-size:12px}
+  .card .value{font-size:14.5px;margin-top:6px}
+  .table-wrapper{grid-column:2;grid-row:3/9;align-self:stretch}
+  table.custom-table{min-width:100%;font-size:14.5px}
+  table.custom-table th,table.custom-table td{padding:14px 10px;font-size:14px}
+  table.custom-table th{font-size:14px}
+
+  .fab{left:34px;right:auto;transform:none;bottom:34px;width:70px;height:70px;font-size:38px}
+  .fab:active{transform:translateY(5px)}
+
+  .detail{position:fixed;inset:auto;top:26px;bottom:26px;right:50%;left:auto;transform:translateX(50%);
+    width:min(760px,92vw);border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.35);border:1px solid var(--border);padding:16px}
+
+  .chat-panel{position:fixed;inset:auto;top:auto;left:auto;right:26px;bottom:96px;
+    width:420px;height:620px;border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.35);
+    border:1px solid var(--border);overflow:hidden}
+
+  .modal{max-width:480px}
+}
+/* ===== اصلاح کامل راست‌به‌چپ ===== */
+html,body{direction:rtl}
+body{text-align:right}
+input,select,textarea{direction:rtl;text-align:right}
+label,.modal label{direction:rtl;text-align:right}
+.backup-btn{direction:rtl}
+.backup-btn .ico{margin-left:2px}
+.custom-table th,.custom-table td{direction:rtl}
+.custom-table th:first-child,.custom-table td:first-child,
+.custom-table th:nth-child(3),.custom-table td:nth-child(3){text-align:center}
+.custom-table th:nth-child(2),.custom-table td:nth-child(2){text-align:right}
+.custom-table .amt-num,.custom-table .amt-cur,
+.cell-phone,.lock-box input{direction:ltr}
+.field-line{direction:rtl}
+.field-label{order:1}
+.field-val{order:2;text-align:right}
+.field-btn{order:3}
+.icon-dot{order:4}
+.chat-messages{direction:rtl}
+.chat-msg{direction:rtl;text-align:right}
+.chat-inputbar{direction:rtl}
+.chat-inputbar textarea{direction:rtl;text-align:right}
+.modal{direction:rtl}
+.buttons{direction:rtl}
+.detail{direction:rtl}
+.dh{direction:rtl}
+.dh button:first-child{order:4}
+.dh span{order:2}
+.dh button:last-child{order:1}
+
+/* ===== چیدمان نهایی مطابق طرح مرجع ===== */
+.info{
+  background:#fcf9f5;
+  border:2px solid #c9bbaa;
+  border-radius:16px;
+  padding:12px 10px;
+  margin:10px 0;
+  box-shadow:0 4px 0 rgba(0,0,0,.12),0 6px 14px rgba(0,0,0,.10);
+}
+.info-row{
+  direction:ltr !important;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.info-avatar-col{
+  order:1;
+  flex:0 0 105px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.info-avatar{
+  width:96px;
+  height:96px;
+  border-radius:50%;
+  border:4px solid #fff;
+  outline:2px solid #e6bd65;
+  background:linear-gradient(145deg,#f5f0e7,#ddd3c2);
+  box-shadow:0 5px 0 rgba(0,0,0,.16),0 7px 15px rgba(0,0,0,.18),inset 0 2px 0 rgba(255,255,255,.8);
+}
+.info-avatar .placeholder-ico{font-size:42px}
+.info-avatar .cam-badge{
+  width:29px;height:29px;left:-4px;bottom:-4px;
+  background:#fff;color:#1671d9;border:2px solid #fff;
+  box-shadow:0 2px 5px rgba(0,0,0,.25);font-size:15px;
+}
+.info-fields{
+  order:2;
+  flex:1;
+  min-width:0;
+  direction:rtl !important;
+}
+.field-line{
+  direction:rtl !important;
+  min-height:47px;
+  padding:7px 0;
+  gap:8px;
+  font-size:16px;
+  border-bottom:2px dashed #ddd2c4;
+}
+.field-label{font-size:17px;color:#4a3728;font-weight:800}
+.field-val{font-size:16px;color:#555}
+.field-btn,.icon-dot{
+  width:30px;height:30px;flex:0 0 30px;font-size:14px;
+}
+.field-btn{cursor:pointer}
+@media(max-width:390px){
+  .info-row{gap:8px}
+  .info-avatar-col{flex-basis:88px}
+  .info-avatar{width:82px;height:82px}
+  .field-line{min-height:42px;font-size:14px}
+  .field-label{font-size:15px}
+  .field-val{font-size:14px}
+  .field-btn,.icon-dot{width:27px;height:27px;flex-basis:27px;font-size:12px}
+}
+
+/* نوار دستیار در پایین صفحه مثل طرح مرجع */
+.chat-fab{
+  width:56px;height:56px;
+  right:18px;bottom:18px;
+  background:linear-gradient(145deg,#8b5cf6,#5b21b6);
+  border:3px solid #fff;
+  box-shadow:0 6px 0 rgba(0,0,0,.25),0 9px 18px rgba(0,0,0,.20),inset 0 3px 0 rgba(255,255,255,.45);
+}
+.chat-fab .bot-avatar{font-size:25px;width:40px;height:40px}
+.chat-fab .bot-crown{font-size:15px;top:0;right:3px}
+
+/* پایین صفحه جا برای دکمه چت/بنر */
+.detail-bottom-bar{position:relative;z-index:10}
+
+/* ==== سطر بدهکاران بزرگ ==== */
+.hot-row{background:linear-gradient(180deg,#fff2f2,#ffe1e1)!important}
+.hot-row:active{background:#ffd0d0!important}
+
+/* ==== دکمه‌های گرد جدید در صورت حساب ==== */
+.round-btn.wa{background:linear-gradient(180deg,#5fe08a,#16a34a)}
+.round-btn.print{background:linear-gradient(180deg,#c9c9c9,#8a8a8a)}
+
+/* ==== بزرگ‌نمایی متن ==== */
+body.zoom-lg{font-size:16px}
+body.zoom-lg table.custom-table th,body.zoom-lg table.custom-table td{font-size:12.5px;padding:8px 3px}
+body.zoom-lg .card .value{font-size:14px}
+body.zoom-lg .card .label{font-size:12.5px}
+body.zoom-lg .field-val,body.zoom-lg .field-label{font-size:15px}
+body.zoom-lg .search{font-size:16px}
+
+/* ==== حالت شب ==== */
+body.dark{--bg:#14161b;--card:#1e2129;--border:#383c46;background:var(--bg);color:#e6e6e6}
+body.dark .page-title{color:#ff7a7a}
+body.dark #accountCount{color:#999!important}
+body.dark .search{background:#242832;color:#eee;border-color:var(--border)}
+body.dark .search:focus{outline-color:#ff5252}
+body.dark .backup-bar{background:linear-gradient(180deg,#242832,#1a1d24);border-color:var(--border)}
+body.dark .table-wrapper{background:var(--card);border-color:var(--border)}
+body.dark table.custom-table th,body.dark table.custom-table td{border-color:var(--border);color:#ddd}
+body.dark table.custom-table tbody tr:active{background:#2a2e38}
+body.dark .hot-row{background:linear-gradient(180deg,#3a1c1c,#2a1414)!important}
+body.dark .hot-row:active{background:#3a1c1c!important}
+body.dark .cell-phone{color:#eee}
+body.dark .empty-state{color:#999}
+body.dark .info{background:var(--card);border-color:var(--border)}
+body.dark .field-line{border-color:#3a3f4a}
+body.dark .field-val{color:#ddd}
+body.dark .field-label{color:#ccc}
+body.dark .balance{background:linear-gradient(180deg,#2a1414,#1f1010);border-color:#5a2a2a;color:#ff8f8f}
+body.dark .detail{background:var(--bg)}
+body.dark .modal{background:var(--card);border-color:var(--border);color:#eee}
+body.dark .modal h3{border-color:var(--border)}
+body.dark .modal input,body.dark .modal select{background:#242832;color:#eee;border-color:var(--border)}
+body.dark .toast{background:#2a2e38}
+body.dark .lock-box{background:var(--card);color:#eee}
+body.dark .lock-box p{color:#aaa}
+body.dark .lock-box input{background:#242832;color:#eee;border-color:var(--border)}
+body.dark .chat-panel{background:var(--bg)}
+body.dark .chat-messages{background:var(--bg)}
+body.dark .chat-msg.assistant{background:#242832;border-color:var(--border);color:#eee}
+body.dark .chat-msg.thinking{background:#242832;border-color:var(--border)}
+body.dark .chat-inputbar{background:#242832;border-color:var(--border)}
+body.dark .chat-inputbar textarea{background:#1a1d24;color:#eee;border-color:var(--border)}
+body.dark .chat-empty{color:#999}
+body.dark .section-divider{border-color:var(--border)}
+
+/* =====================  UI کرستالی / شیشه‌یی  ===================== */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+
+/* --- نوار جستجو --- */
+.search,body.dark .search{
+  height:46px;border:0;border-radius:0;padding:0 30px;margin-bottom:8px;
+  background-color:transparent;box-shadow:none;-webkit-appearance:none;appearance:none;
+  color:#1d2b4a;font-weight:600;
+  background-image:url("assets/image_014.webp"),url("assets/image_015.webp"),url("assets/image_016.webp");
+  background-repeat:no-repeat;
+  background-position:left center,right center,center;
+  background-size:auto 100%,auto 100%,calc(100% - 40px) 100%;
+  filter:drop-shadow(0 3px 4px rgba(40,60,140,.28));
+}
+.search::placeholder{color:#5b6b90;opacity:1;font-weight:600}
+.search:focus,body.dark .search:focus{outline:none;filter:drop-shadow(0 0 7px rgba(90,110,255,.8))}
+
+/* --- ترتیب و فیلتر --- */
+.list-toolbar{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:8px;align-items:stretch}
+.filter-chips{display:contents}
+.sort-pill,.filter-chips button{position:relative;width:100%;min-width:0;height:auto;aspect-ratio:1.4;padding:0;border:0;background-color:transparent;background-repeat:no-repeat;background-size:100% 100%;background-position:center;transition:transform .08s,filter .15s}
+.sort-pill{background-image:url("assets/image_017.webp");filter:drop-shadow(0 3px 3px rgba(40,60,130,.2))}
+.sort-pill:active{transform:translateY(2px)}
+.sort-pill .sort-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 12%;text-align:center;font-size:12px;font-weight:800;line-height:1.25;color:#3a2418;text-shadow:0 1px 0 rgba(255,255,255,.75);pointer-events:none}
+.list-toolbar select{position:absolute;inset:0;width:100%;height:100%;opacity:0;border:0;background:transparent;font-size:16px;cursor:pointer;-webkit-appearance:none;appearance:none}
+.filter-chips button{color:transparent;text-shadow:none;font-size:14px;font-weight:800;cursor:pointer;filter:drop-shadow(0 3px 3px rgba(40,60,130,.18)) saturate(.85) opacity(.9)}
+.filter-chips button.active{filter:drop-shadow(0 0 7px rgba(110,90,255,.75)) drop-shadow(0 3px 3px rgba(40,60,130,.2));transform:translateY(-1px)}
+.filter-chips button:active{transform:translateY(2px)}
+.filter-chips button[data-f="all"]{background-image:url("assets/image_018.webp")}
+.filter-chips button[data-f="debtor"]{background-image:url("assets/image_019.webp")}
+.filter-chips button[data-f="creditor"]{background-image:url("assets/image_020.webp");color:#0b2a9a;text-shadow:0 1px 0 rgba(255,255,255,.9),0 0 6px rgba(255,255,255,.75)}
+
+/* --- کارت‌های خلاصه --- */
+.card,.card.green,.card.blue,.card.red{
+  background:none;border:0;box-shadow:none;padding:0;overflow:visible;
+  display:flex;flex-direction:column;text-align:center;
+  filter:drop-shadow(0 4px 5px rgba(0,30,60,.25));
+}
+.card .ct,.card .cb{display:block;width:100%;flex:0 0 auto;background-repeat:no-repeat;background-size:100% 100%}
+.card .cm{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;padding:0 8px;background-repeat:no-repeat;background-size:100% 100%}
+.card .value{margin:0;font-size:12.5px;line-height:1.3;font-weight:800}
+.card .amt-num,.card .amt-cur{display:inline-block;margin:0 2px;opacity:1}
+.card .cm{min-height:22px;justify-content:center}
+.card.green .ct{aspect-ratio:340/268;background-image:url("assets/image_021.webp")}
+.card.green .cm{background-image:url("assets/image_022.webp")}
+.card.green .cb{aspect-ratio:340/59;background-image:url("assets/image_023.webp")}
+.card.blue .ct{aspect-ratio:340/262;background-image:url("assets/image_024.webp")}
+.card.blue .cm{background-image:url("assets/image_025.webp")}
+.card.blue .cb{aspect-ratio:340/54;background-image:url("assets/image_026.webp")}
+.card.red .ct{aspect-ratio:340/257;background-image:url("assets/image_027.webp")}
+.card.red .cm{background-image:url("assets/image_028.webp")}
+.card.red .cb{aspect-ratio:340/54;background-image:url("assets/image_029.webp")}
+.card.green .value{color:#1e6b2a;text-shadow:0 1px 0 rgba(255,255,255,.9),0 0 6px rgba(255,255,255,.8)}
+.card.blue .value{color:#0b3fb0;text-shadow:0 1px 0 rgba(255,255,255,.9),0 0 6px rgba(255,255,255,.8)}
+.card.red .value{color:#c62828;text-shadow:0 1px 0 rgba(255,255,255,.9),0 0 6px rgba(255,255,255,.8)}
+
+/* --- سرِ جدول اصلی --- */
+table.custom-table.main-table thead th,
+body.dark table.custom-table.main-table thead th{
+  height:46px;padding:0;border:0!important;text-align:center;
+  background-color:transparent;background-repeat:no-repeat;background-size:100% 100%;background-position:center;
+  color:#fff!important;font-size:11.5px;font-weight:800;
+  text-shadow:0 1px 2px rgba(20,0,90,.85);
+}
+table.custom-table.main-table thead th:nth-child(1){background-image:url("assets/image_030.webp")}
+table.custom-table.main-table thead th:nth-child(2){background-image:url("assets/image_031.webp")}
+table.custom-table.main-table thead th:nth-child(3){background-image:url("assets/image_032.webp")}
+table.custom-table.main-table thead th:nth-child(4){background-image:url("assets/image_033.webp")}
+table.custom-table.main-table thead th:nth-child(5){background-image:url("assets/image_034.webp")}
+table.custom-table.main-table thead th:nth-child(6){background-image:url("assets/image_035.webp")}
+
+.card.green .cm{color:#1e6b2a}.card.blue .cm{color:#0b3fb0}.card.red .cm{color:#c62828}
+
+/* --- نوار دکمه‌های پشتیبان‌گیری --- */
+.backup-bar{grid-template-columns:repeat(3,1fr);gap:6px;padding:8px}
+.backup-btn{aspect-ratio:1.3;min-height:0;padding:0;border:0;border-radius:0;overflow:visible;direction:rtl;gap:3px;
+  background-color:transparent;background-repeat:no-repeat;background-size:100% 100%;background-position:center;box-shadow:none;
+  filter:drop-shadow(0 3px 3px rgba(40,60,130,.2));color:#fff;font-size:11px;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.backup-btn::after{display:none}
+.backup-btn:active{transform:translateY(3px);box-shadow:none}
+.backup-btn .ico{font-size:22px}
+.backup-btn.green,.backup-btn.teal,.backup-btn.red,.backup-btn.pink,.backup-btn.night,.backup-btn.slate{font-size:11.5px;gap:3px;white-space:nowrap;padding:0 4px}
+.backup-btn.orange,.backup-btn.blue,.backup-btn.purple,.backup-btn.indigo,.backup-btn.gold{font-size:0;color:transparent;text-shadow:none}
+.backup-btn.orange .ico,.backup-btn.blue .ico,.backup-btn.purple .ico,.backup-btn.indigo .ico,.backup-btn.gold .ico,.backup-btn.brown .ico{display:none}
+.backup-btn.brown{justify-content:flex-end;padding-left:22%;font-size:12px;text-shadow:0 1px 2px rgba(60,20,0,.85)}
+.backup-btn.orange{background-image:url("assets/image_036.webp");background-color:transparent}
+.backup-btn.blue{background-image:url("assets/image_037.webp");background-color:transparent}
+.backup-btn.purple{background-image:url("assets/image_038.webp");background-color:transparent}
+.backup-btn.indigo{background-image:url("assets/image_039.webp");background-color:transparent}
+.backup-btn.gold{background-image:url("assets/image_040.webp");background-color:transparent}
+.backup-btn.brown{background-image:url("assets/image_041.webp");background-color:transparent}
+.backup-btn.green{background-image:url("assets/image_042.webp");background-color:transparent}
+.backup-btn.teal{background-image:url("assets/image_043.webp");background-color:transparent}
+.backup-btn.red{background-image:url("assets/image_044.webp");background-color:transparent}
+.backup-btn.pink{background-image:url("assets/image_045.webp");background-color:transparent}
+.backup-btn.night{background-image:url("assets/image_046.webp");background-color:transparent}
+.backup-btn.slate{background-image:url("assets/image_047.webp");background-color:transparent}
+@media (min-width:1000px){.backup-bar{grid-template-columns:repeat(3,1fr)}}
+
+/* --- دکمه دستیار --- */
+.chat-fab{width:64px;height:64px;border:0;border-radius:50%;background:url("assets/image_048.webp") center/100% 100% no-repeat;box-shadow:none;overflow:visible;filter:drop-shadow(0 5px 6px rgba(60,20,140,.45))}
+.chat-fab .bot-avatar,.chat-fab .bot-crown{display:none}
+.chat-fab:active{transform:translateY(3px);box-shadow:none}
+
+/* --- دکمه شناور + --- */
+.fab{
+  width:68px;height:68px;border:0;box-shadow:none;background:url("assets/image_049.webp") center/contain no-repeat;
+  filter:drop-shadow(0 6px 6px rgba(120,0,0,.4));
+  color:#fff;font-size:40px;font-weight:700;padding-bottom:5px;
+  text-shadow:0 2px 3px rgba(90,0,0,.75),0 0 6px rgba(255,255,255,.55);
+}
+.fab:active{box-shadow:none;transform:translateX(-50%) translateY(4px) scale(.96)}
+@media (min-width:1000px){.fab:active{transform:translateY(4px) scale(.96)}}
+
+/* --- جدول صورت حساب --- */
+table.custom-table.detail-table{table-layout:fixed}
+table.custom-table.detail-table thead th,body.dark table.custom-table.detail-table thead th{
+  height:46px;padding:0 2px;border:0!important;text-align:center;line-height:1.15;
+  background-color:transparent;background-repeat:no-repeat;background-size:100% 100%;background-position:center;
+  color:#fff!important;font-size:10.5px;font-weight:800;text-shadow:0 1px 2px rgba(20,0,90,.85);
+}
+table.custom-table.detail-table thead th:nth-child(1){background-image:url("assets/image_050.webp")}
+table.custom-table.detail-table thead th:nth-child(2){background-image:url("assets/image_051.webp")}
+table.custom-table.detail-table thead th:nth-child(3){background-image:url("assets/image_052.webp")}
+table.custom-table.detail-table thead th:nth-child(4){background-image:url("assets/image_053.webp")}
+table.custom-table.detail-table thead th:nth-child(5){background-image:url("assets/image_054.webp")}
+table.custom-table.detail-table thead th:nth-child(6){background-image:url("assets/image_055.webp")}
+
+/* --- باقی مانده فعلی --- */
+.balance,body.dark .balance{
+  aspect-ratio:2184/639;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:0 5% 0 26%;margin:8px 0;border:0;border-radius:0;box-shadow:none;
+  background:url("assets/image_056.webp") center/100% 100% no-repeat;
+  color:#c62828;font-size:14px;font-weight:800;line-height:1.35;
+  text-shadow:0 1px 0 rgba(255,255,255,.9),0 0 6px rgba(255,255,255,.7);
+  filter:drop-shadow(0 3px 4px rgba(150,40,80,.25));
+}
+.balance b{font-size:19px}
+.balance .amt-num,.balance .amt-cur{display:inline-block;margin:0 3px;opacity:1}
+
+/* --- دکمه‌های رسید / قرض --- */
+.actions{gap:8px}
+.actions button{aspect-ratio:2;padding:0;border:0;border-radius:0;font-size:0;color:transparent;text-shadow:none;box-shadow:none;
+  background-color:transparent;background-repeat:no-repeat;background-size:100% 100%;background-position:center;
+  filter:drop-shadow(0 4px 4px rgba(40,60,130,.2))}
+.actions .btn-receipt{background-image:url("assets/image_057.webp")}
+.actions .btn-debt{background-image:url("assets/image_058.webp")}
+.actions button:active{transform:translateY(3px);box-shadow:none}
+
+/* --- دکمه برگشت --- */
+body #detail .back-fab{position:fixed;bottom:14px;left:10px;width:54px;height:54px;border-radius:50%;padding:0;
+  background:url("assets/image_059.webp") center/contain no-repeat;font-size:0;color:transparent;text-shadow:none;z-index:210;border:0;cursor:pointer;filter:drop-shadow(0 5px 6px rgba(120,0,0,.4))}
+body #detail .back-fab:active{transform:scale(.94)}
+
+/* --- نوار پایین --- */
+.detail-bottom-bar{position:sticky;bottom:8px;display:flex;flex-direction:row-reverse;align-items:center;justify-content:center;gap:0;
+  width:fit-content;height:54px;margin:10px auto 0;padding:0 26px;
+  background:url("assets/image_060.webp") left center/auto 100% no-repeat,url("assets/image_061.webp") right center/auto 100% no-repeat,url("assets/image_062.webp") center/calc(100% - 46px) 100% no-repeat;
+  filter:drop-shadow(0 4px 5px rgba(20,40,120,.3))}
+.detail-bottom-bar .round-btn,.detail-bottom-bar .round-btn.wa,.detail-bottom-bar .round-btn.print{
+  width:42px;height:40px;margin:0 2px;border:0;border-radius:0;box-shadow:none;font-size:0;color:transparent;
+  background-color:transparent;background-repeat:no-repeat;background-position:center;background-size:25px 25px}
+.detail-bottom-bar .round-btn+.round-btn::before{content:'';position:absolute;left:-3px;top:7px;bottom:7px;width:1.5px;background:rgba(40,70,190,.3)}
+.detail-bottom-bar .round-btn:active{transform:scale(.9);box-shadow:none}
+#photoBtn{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%2316268f' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><rect x='7' y='9' width='34' height='30' rx='7'/><circle cx='17' cy='19' r='3' fill='%2316268f'/><path d='M9 34 L20 25 L28 32 L34 27 L40 33'/></svg>")}
+#waBtn{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%2316268f' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><path d='M24 6 a17 17 0 1 1 -8.6 31.6 L7 41 l2.8 -8.2 A17 17 0 0 1 24 6z'/><path d='M18 16 c-1 7 5 14 13 14 l2.5-3.5 -5-2.5 -2 2.2 c-3-1-5-3-6-6 l2.2-2 -2.5-5z' fill='%2316268f' stroke='none'/></svg>")}
+#printBtn{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%2316268f' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><path d='M14 19V8h20v11'/><rect x='6' y='19' width='36' height='16' rx='5'/><rect x='14' y='28' width='20' height='12' rx='2' fill='%23e8f0ff'/></svg>")}
+#syncBtn{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%2316268f' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><path d='M39 21 A15 15 0 0 0 11 15'/><path d='M40 8 v13 h-13'/><path d='M9 27 A15 15 0 0 0 37 33'/><path d='M8 40 v-13 h13'/></svg>")}
+#mapBtn{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%2316268f' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><circle cx='24' cy='24' r='17'/><path d='M32 16 L26.5 26.5 L16 32 L21.5 21.5 Z' fill='%2316268f'/></svg>")}
+.detail-bottom-bar .badge{top:-2px;left:-2px}
+
+/* --- همگام‌سازی (نوار پشتیبان‌گیری) --- */
+.backup-btn.teal{background-image:url("assets/image_063.webp");background-color:transparent;font-size:0;color:transparent;text-shadow:none}
+.backup-btn.teal .ico{display:none}
+
+/* --- بنر بالا --- */
+.header.brand-header{display:block;aspect-ratio:2196/579;height:auto;min-height:0;padding:0;margin:0 0 6px;border:0;border-radius:0;box-shadow:none;
+  background:url("assets/image_064.webp") center/100% 100% no-repeat;filter:drop-shadow(0 4px 5px rgba(120,0,0,.35));font-size:0;color:transparent}
+.brand-header .brand-logo,.brand-header .brand-copy{display:none}
+
+/* --- سرِ صفحه صورت حساب --- */
+.dh{position:relative;display:block;aspect-ratio:2241/508;padding:0;margin:0 0 8px;border:0;border-radius:0;box-shadow:none;
+  background:url("assets/image_065.webp") center/100% 100% no-repeat;filter:drop-shadow(0 4px 5px rgba(120,0,0,.35))}
+.dh button{position:absolute;top:48.5%;transform:translateY(-50%);width:12%;height:auto;aspect-ratio:1;padding:0;border-radius:50%;
+  font-size:0;color:transparent;text-shadow:none;background:transparent}
+.dh button:first-child{right:2.6%;left:auto}
+.dh button:last-child{left:3.9%;right:auto}
+.dh button:active{background:rgba(255,255,255,.25)}
+.dh span{position:absolute;top:0;bottom:0;left:19%;right:19%;display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(80,0,0,.8);white-space:nowrap;overflow:hidden}
+
+/* --- کارت اطلاعات --- */
+.info{background:linear-gradient(180deg,#f9fcff,#e4eeff);border:2px solid #bcd5ff;border-radius:26px;padding:12px 10px;
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.8),inset 0 -8px 16px rgba(120,170,255,.22),0 5px 12px rgba(50,90,190,.25)}
+body.dark .info{background:linear-gradient(180deg,#f9fcff,#e4eeff);border-color:#bcd5ff}
+.field-line{border-bottom:0;padding:4px 0;gap:5px}
+.field-label{order:1;color:#12227a;font-weight:800;font-size:12.5px}
+.field-val{order:2;text-align:right;height:32px;line-height:32px;padding:0 12px;color:#12227a;font-weight:800;font-size:12.5px;
+  background:url("assets/image_066.webp") left center/auto 100% no-repeat,url("assets/image_067.webp") right center/auto 100% no-repeat,url("assets/image_068.webp") center/calc(100% - 40px) 100% no-repeat}
+.icon-dot,.icon-dot.name,.icon-dot.addr,.icon-dot.phone,.icon-dot.khata{order:0;width:34px;height:34px;flex:0 0 34px;border-radius:50%;box-shadow:none;
+  background-color:transparent;background-repeat:no-repeat;background-size:100% 100%;font-size:0}
+.icon-dot.name{background-image:url("assets/image_069.webp")}
+.icon-dot.addr{background-image:url("assets/image_070.webp")}
+.icon-dot.phone{background-image:url("assets/image_071.webp")}
+.icon-dot.khata{background-image:url("assets/image_072.webp");font-size:15px}
+.field-btn,.field-edit,.field-map,.field-call{width:34px;height:34px;flex:0 0 34px;border-radius:50%;box-shadow:none;background-color:transparent;
+  background-repeat:no-repeat;background-size:100% 100%;font-size:0}
+.field-edit{order:5;background-image:url("assets/image_073.webp")}
+.field-map{order:3;background-image:url("assets/image_074.webp");font-size:15px}
+.field-call{order:3;background-image:url("assets/image_075.webp");font-size:15px}
+
+/* --- تم روشن شیشه‌یی (مثل طرح) --- */
+:root{--bg:#eef1f8;--card:#fbfcff;--border:#c9d3ea}
+body:not(.dark){background:linear-gradient(180deg,#f7f9fe 0%,#e8edf8 48%,#f6f4fc 100%) fixed;min-height:100vh}
+body:not(.dark) .detail,body:not(.dark) .chat-panel{background:linear-gradient(180deg,#f7f9fe 0%,#e8edf8 48%,#f6f4fc 100%)}
+body:not(.dark) .backup-bar{background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(232,238,250,.85));border:1.5px solid #d3dcf1;border-radius:22px;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.8),0 4px 10px rgba(60,90,180,.15)}
+body:not(.dark) .table-wrapper{border-color:#cbd6ee;box-shadow:0 4px 10px rgba(60,90,180,.15)}
+body:not(.dark) table.custom-table td{border-color:#d6def0}
+table.custom-table.main-table thead th,table.custom-table.detail-table thead th{filter:brightness(1.22) saturate(1.05)}
+</style>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyAGefOtzHYbxs0SrFVuRN2ljHd97Hg5W4U",
+    authDomain: "khatasultan.firebaseapp.com",
+    projectId: "khatasultan",
+    storageBucket: "khatasultan.firebasestorage.app",
+    messagingSenderId: "131072871428",
+    appId: "1:131072871428:web:47b341bcd625232a10f951",
+    measurementId: "G-7NNLPBPXP9"
+  };
+  var CLOUD_DOC = null;
+  try{
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    CLOUD_DOC = db.collection('khatabook').doc('main');
+  }catch(e){ console.error('firebase init error', e); }
+</script>
+<!-- نسخه بازبینی‌شده: رویدادهای دکمه‌های نوار اصلی فقط یک‌بار مدیریت می‌شوند. -->
+</head>
+<body>
+
+<div class="header brand-header" role="img" aria-label="دفتر کهاته سلطان - مدیریت حساب‌ها">
+  <div class="brand-logo" aria-label="تاج سلطان">
+    <svg viewBox="0 0 120 70" role="img" aria-hidden="true">
+      <path d="M12 17l20 18 18-27 10 27 18-27 20 27 10-18 7 39H5z" fill="#e5b84b" stroke="#fff4d6" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="12" cy="17" r="5" fill="#fff4d6"/><circle cx="50" cy="8" r="5" fill="#fff4d6"/><circle cx="78" cy="8" r="5" fill="#fff4d6"/><circle cx="108" cy="17" r="5" fill="#fff4d6"/>
+      <path d="M12 56h96" stroke="#fff4d6" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="brand-copy">
+    <div class="brand-name">دفتر کهاته سلطان</div>
+    <div class="brand-subtitle">مدیریت حساب‌ها</div>
+  </div>
+</div>
+<div class="page-title">لیست تمام حساب‌ها <span id="accountCount" style="font-size:13px;font-weight:normal;color:#777;"></span></div>
+
+<div class="backup-bar">
+  <button type="button" class="backup-btn orange" data-action="data" onclick="viewData(); return false;">
+    <span class="ico">👁️</span> دیتا
+  </button>
+  <button type="button" class="backup-btn green" data-action="import" onclick="triggerImport(); return false;">
+    <span class="ico">📤</span> بازیابی
+  </button>
+  <button type="button" class="backup-btn blue" data-action="drive" onclick="saveToDrive(); return false;">
+    <span class="ico">💾</span> Drive
+  </button>
+  <button type="button" class="backup-btn purple" data-action="koder" onclick="saveToKoder(); return false;">
+    <span class="ico">📁</span> Koder
+  </button>
+  <button type="button" class="backup-btn brown" data-action="backup" onclick="exportBackup(); return false;">
+    <span class="ico">📥</span> بکاپ
+  </button>
+  <button type="button" class="backup-btn indigo" data-action="faceid" onclick="faceIDSettings(); return false;">
+    <span class="ico">🆔</span> Face ID
+  </button>
+  <button type="button" class="backup-btn teal" data-action="sync" onclick="manualSync(); return false;">
+    <span class="ico">🔄</span> همگام‌سازی
+  </button>
+  <button type="button" class="backup-btn gold" data-action="changepin" onclick="changePin(); return false;">
+    <span class="ico">🔑</span> رمز
+  </button>
+  <button type="button" class="backup-btn red" data-action="lock" onclick="lockNow(); return false;">
+    <span class="ico">🔒</span> قفل
+  </button>
+  <button type="button" class="backup-btn pink" data-action="rate" onclick="rateSettings(); return false;">
+    <span class="ico">💱</span> نرخ ارز
+  </button>
+  <button type="button" class="backup-btn night" data-action="darkmode" onclick="toggleDarkMode(); return false;">
+    <span class="ico" id="darkIco">🌙</span> <span id="darkLbl">حالت شب</span>
+  </button>
+  <button type="button" class="backup-btn slate" data-action="zoom" onclick="toggleZoom(); return false;">
+    <span class="ico" id="zoomIco">🔤</span> <span id="zoomLbl">بزرگ‌نمایی</span>
+  </button>
+  <input type="file" id="importFile" accept=".json" style="display:none" onchange="importBackup(event)">
+</div>
+
+<div class="list-toolbar">
+  <div class="sort-pill"><span class="sort-lbl" id="sortLbl">پیش‌فرض</span><select id="sortSel" onchange="setSort(this.value)" aria-label="ترتیب لیست">
+    <option value="default">پیش‌فرض</option>
+    <option value="name">نام (الفبا)</option>
+    <option value="remDesc">بیشترین بدهکار</option>
+    <option value="remAsc">بیشترین طلبکار</option>
+    <option value="lastTx">آخرین معامله</option>
+  </select></div>
+  <div class="filter-chips">
+    <button type="button" data-f="all" class="active" onclick="setFilter('all')">همه</button>
+    <button type="button" data-f="debtor" onclick="setFilter('debtor')">بدهکار</button>
+    <button type="button" data-f="creditor" onclick="setFilter('creditor')">طلبکار</button>
+  </div>
+</div>
+
+<div id="summary" class="summary"></div>
+
+<input id="search" class="search" placeholder="جستجو در نام، شماره، آدرس، تاریخ، مبلغ و شرح..." oninput="render()">
+
+<div class="table-wrapper">
+  <table class="custom-table main-table">
+    <colgroup><col style="width:9%"><col style="width:31%"><col style="width:11%"><col style="width:16%"><col style="width:16%"><col style="width:17%"></colgroup>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>اسم حساب</th>
+        <th>کهاته</th>
+        <th>رسید</th>
+        <th>قرض</th>
+        <th>باقی</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+
+<button class="fab" onclick="addDebtor()">+</button>
+
+<div id="detail" class="detail">
+  <div class="dh">
+    <button onclick="closeDetail()" aria-label="برگشت">‹</button>
+    <span id="title">صورت حساب</span>
+    <button onclick="editInfo()" aria-label="ویرایش">✎</button>
+  </div>
+  <div id="detailBody"></div>
+  <button class="back-fab" onclick="closeDetail()" aria-label="برگشت"></button>
+</div>
+
+<button class="chat-fab" onclick="openChat()" aria-label="دستیار هوش مصنوعی"><span class="bot-avatar">🤖</span><span class="bot-crown">👑</span></button>
+
+<div id="chatPanel" class="chat-panel">
+  <div class="chat-header">
+    <button onclick="closeChat()" aria-label="بستن">‹</button>
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-title">دستیار هوش مصنوعی<span class="chat-status">دستیار دفتر سلطان • آماده کمک</span></div>
+    <button onclick="promptForApiKey()" style="font-size:17px;width:34px;" aria-label="تنظیمات کلید API">⚙️</button>
+    <button class="chat-clear" onclick="clearChat()" style="font-size:11px;width:auto;padding:0 6px;">پاک کردن</button>
+  </div>
+  <div id="chatMessages" class="chat-messages"></div>
+  <div class="chat-inputbar">
+    <textarea id="chatInput" placeholder="سوال یا پیام خود را بنویسید..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChatMessage();}"></textarea>
+    <button id="chatSendBtn" class="chat-send" onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
+
+<div id="modalbg" class="modalbg" onclick="if(event.target===this)closeModal()">
+  <div id="modal" class="modal"></div>
+</div>
+<div id="photoViewer" class="photo-viewer" onclick="if(event.target===this)closePhotoViewer()">
+  <div class="pv-close" id="pvCloseBtn">✕</div>
+  <img id="pvImg" src="" alt="عکس مشتری">
+  <div class="pv-actions">
+    <button id="pvChangeBtn" style="background:linear-gradient(180deg,#5cb8ff,#0d5ecb)">🔄 تعویض عکس</button>
+    <button id="pvDeleteBtn" style="background:linear-gradient(180deg,#ff5252,#b80000)">🗑 حذف</button>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<div id="lockScreen" class="lock-screen hidden">
+  <div class="lock-box" id="lockBox"></div>
+</div>
+
+<script>
+// ========================== داده ==========================
+var debtors = [];
+var current = null;
+var sortMode = 'default';
+var filterMode = 'all';
+try{ sortMode = localStorage.getItem('khatabook_sort') || 'default'; }catch(e){}
+
+function $(id){return document.getElementById(id);}
+function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function num(n){return (Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:2});}
+function normalizeDigits(v){
+  return String(v==null?'':v).replace(/[۰-۹]/g,function(d){return String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d));});
+}
+function amount(v){
+  var s=normalizeDigits(v).replace(/,/g,'').trim();
+  if(!/^\d+(?:\.\d{1,2})?$/.test(s))return NaN;
+  var n=Number(s);
+  return isFinite(n)&&n>0?n:NaN;
+}
+function storedAmount(v){
+  var n=Number(normalizeDigits(v).replace(/,/g,''));
+  return isFinite(n)&&n>0?n:0;
+}
+function sanitizeAmountInput(el){
+  var v=normalizeDigits(el.value).replace(/,/g,'').replace(/[^\d.]/g,'');
+  var dot=v.indexOf('.');
+  if(dot!==-1)v=v.slice(0,dot+1)+v.slice(dot+1).replace(/\./g,'').slice(0,2);
+  el.value=v;
+}
+function normalizeNumberInput(el){
+  el.value=normalizeDigits(el.value).replace(/[^\d+]/g,'');
+}
+function normalizeDateInput(el){
+  el.value=normalizeDigits(el.value).replace(/[^\d\/.-]/g,'').replace(/-/g,'/');
+}
+function normalizeDateValue(v){
+  var s=normalizeDigits(v||'').trim().replace(/-/g,'/').replace(/\./g,'/');
+  var parts=s.split('/').filter(function(p){return p!=='';});
+  if(parts.length!==3)return s;
+  var y=parts[0],m=parts[1],d=parts[2];
+  if(y.length<4 && parts[2].length===4){
+    var tmp=y; y=d; d=tmp;
+  }
+  m=m.padStart(2,'0');
+  d=d.padStart(2,'0');
+  return y+'/'+m+'/'+d;
+}
+function normalizeData(input){
+  var list=Array.isArray(input)?input:(input&&Array.isArray(input.debtors)?input.debtors:null);
+  if(!list)return null;
+  return list.map(function(raw,i){
+    raw=raw&&typeof raw==='object'?raw:{};
+    var d={
+      id:raw.id!==undefined&&raw.id!==null&&String(raw.id)!==''?raw.id:Date.now()+i,
+      name:String(raw.name||'').trim()||('حساب '+(i+1)),
+      phone:String(raw.phone||'').trim(),
+      khataNumber:String(raw.khataNumber||'').trim(),
+      address:String(raw.address||'').trim(),
+      transactions:[]
+    };
+    if(raw.photo && typeof raw.photo==='string' && raw.photo.indexOf('data:image')===0){
+      d.photo=raw.photo;
+    }
+    var txs=Array.isArray(raw.transactions)?raw.transactions:[];
+    d.transactions=txs.map(function(tx,j){
+      tx=tx&&typeof tx==='object'?tx:{};
+      var oldReceipt=tx.receipt===undefined?tx.debt:tx.receipt;
+      var oldDebt=tx.debtVal===undefined?tx.paid:tx.debtVal;
+      var receipt=storedAmount(oldReceipt),debtVal=storedAmount(oldDebt);
+      return {
+        id:tx.id!==undefined&&tx.id!==null&&String(tx.id)!==''?tx.id:Date.now()+100000+i*1000+j,
+        date:normalizeDateValue(String(tx.date||'').trim()||today()),
+        currency:tx.currency==='USD'?'USD':'AFN',
+        details:String(tx.details||'').trim()||(receipt?'رسید':'قرض'),
+        receipt:receipt,
+        debtVal:debtVal,
+        page:String(tx.page||'').trim()
+      };
+    });
+    return d;
+  });
+}
+
+function today(){
+  try{
+    var d=new Date(), f=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
+    var p=f.formatToParts(d), y='',m='',day='';
+    for(var i=0;i<p.length;i++){if(p[i].type==='year')y=p[i].value;if(p[i].type==='month')m=p[i].value;if(p[i].type==='day')day=p[i].value;}
+    var toEn=function(s){var map={'۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9'};return s.replace(/[۰-۹]/g,function(d){return map[d];});};
+    return toEn(y)+'/'+toEn(m).padStart(2,'0')+'/'+toEn(day).padStart(2,'0');
+  }catch(e){var d=new Date();return d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');}
+}
+
+function getTotals(d){
+  var aR=0,aD=0,uR=0,uD=0;
+  if(d.transactions)for(var i=0;i<d.transactions.length;i++){
+    var t=d.transactions[i], c=t.currency||'AFN', r=+t.receipt||+t.debt||0, deb=+t.debtVal||+t.paid||0;
+    if(c==='AFN'){aR+=r;aD+=deb;}else{uR+=r;uD+=deb;}
+  }
+  return {afnR:aR,afnD:aD,usdR:uR,usdD:uD,afnRem:aR-aD,usdRem:uR-uD};
+}
+
+function amtHtml(v,c){return '<span class="amt-num">'+num(v)+'</span><span class="amt-cur">'+c+'</span>';}
+function fmt(a,u){var p=[];if(a!==0)p.push(amtHtml(a,'AFN'));if(u!==0)p.push(amtHtml(u,'USD'));return p.length?p.join('<div class="amt-sep"></div>'):amtHtml(0,'AFN');}
+
+// ========================== مرتب‌سازی / فیلتر / نشان بدهکار بزرگ ==========================
+function netRemaining(d){var t=getTotals(d);return t.afnRem!==0?t.afnRem:t.usdRem;}
+function lastTxDate(d){
+  if(!d.transactions||!d.transactions.length)return '';
+  var max='';
+  for(var i=0;i<d.transactions.length;i++){var dt=d.transactions[i].date||'';if(dt>max)max=dt;}
+  return max;
+}
+function syncSortLabel(){var s=$('sortSel'),l=$('sortLbl');if(s&&l){var o=s.options[s.selectedIndex];l.textContent=o?o.text:'';}}
+function setSort(v){sortMode=v;try{localStorage.setItem('khatabook_sort',v);}catch(e){}syncSortLabel();render();}
+function setFilter(v){
+  filterMode=v;
+  var btns=document.querySelectorAll('.filter-chips button');
+  for(var i=0;i<btns.length;i++){btns[i].classList.toggle('active',btns[i].getAttribute('data-f')===v);}
+  render();
+}
+
+// ========================== نرخ تبدیل ارز ==========================
+function getUsdRate(){try{var r=Number(localStorage.getItem('khatabook_usd_rate'));return isFinite(r)&&r>0?r:0;}catch(e){return 0;}}
+function setUsdRateVal(r){try{if(r)localStorage.setItem('khatabook_usd_rate',String(r));else localStorage.removeItem('khatabook_usd_rate');}catch(e){}}
+function rateSettings(){
+  var cur=getUsdRate();
+  modal('<h3>💱 نرخ تبدیل ارز</h3>'+
+    '<p style="font-size:12px;color:#666;margin:0 0 10px;">یک دالر امریکایی برابر با چند افغانی است؟ با تعیین این نرخ، مجموع «باقی مانده» به‌صورت یک‌جا (بر اساس افغانی) هم نشان داده می‌شود.</p>'+
+    '<label>نرخ (AFN به ازای ۱ USD)</label><input id="rateInput" type="text" inputmode="numeric" lang="en" dir="ltr" value="'+(cur||'')+'" placeholder="مثلاً 70" oninput="normalizeNumberInput(this)">'+
+    '<div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button><button class="confirm red" id="clearRateBtn">حذف نرخ</button><button class="confirm" id="saveRateBtn">ذخیره</button></div>');
+  $('saveRateBtn').onclick=function(){
+    var v=Number(normalizeDigits($('rateInput').value));
+    if(!isFinite(v)||v<=0){toast('نرخ معتبر وارد کنید','error');return;}
+    setUsdRateVal(v);closeModal();render();if(current)renderDetail();toast('✅ نرخ ذخیره شد','success');
+  };
+  $('clearRateBtn').onclick=function(){setUsdRateVal(0);closeModal();render();if(current)renderDetail();toast('نرخ حذف شد','success');};
+}
+function combinedAfn(afn,usd){var r=getUsdRate();return r?(afn+usd*r):null;}
+function summaryCardsHtml(afnR,usdR,afnD,usdD){
+  var afnRem=afnR-afnD,usdRem=usdR-usdD;
+  var combined=combinedAfn(afnRem,usdRem);
+  var combinedLine=combined!==null?('<div style="font-size:10px;opacity:.8;margin-top:3px;">≈ '+num(combined)+' AFN</div>'):'';
+  return '<div class="card green"><i class="ct"></i><span class="sr-only">مجموع رسید</span><div class="cm"><div class="value">'+fmt(afnR,usdR)+'</div></div><i class="cb"></i></div>'+
+    '<div class="card blue"><i class="ct"></i><span class="sr-only">مجموع قرض</span><div class="cm"><div class="value">'+fmt(afnD,usdD)+'</div></div><i class="cb"></i></div>'+
+    '<div class="card red"><i class="ct"></i><span class="sr-only">باقی مانده</span><div class="cm"><div class="value">'+fmt(afnRem,usdRem)+'</div>'+combinedLine+'</div><i class="cb"></i></div>';
+}
+
+// ========================== حالت شب و بزرگ‌نمایی ==========================
+function isDarkMode(){try{return localStorage.getItem('khatabook_dark')==='1';}catch(e){return false;}}
+function applyDarkMode(){
+  var on=isDarkMode();
+  document.body.classList.toggle('dark',on);
+  var ic=$('darkIco'),lb=$('darkLbl');
+  if(ic)ic.textContent=on?'☀️':'🌙';
+  if(lb)lb.textContent=on?'حالت روز':'حالت شب';
+}
+function toggleDarkMode(){try{localStorage.setItem('khatabook_dark',isDarkMode()?'0':'1');}catch(e){}applyDarkMode();}
+function isZoomOn(){try{return localStorage.getItem('khatabook_zoom')==='1';}catch(e){return false;}}
+function applyZoom(){
+  var on=isZoomOn();
+  document.body.classList.toggle('zoom-lg',on);
+  var ic=$('zoomIco'),lb=$('zoomLbl');
+  if(ic)ic.textContent=on?'🔍':'🔤';
+  if(lb)lb.textContent=on?'اندازه عادی':'بزرگ‌نمایی';
+}
+function toggleZoom(){try{localStorage.setItem('khatabook_zoom',isZoomOn()?'0':'1');}catch(e){}applyZoom();}
+
+var cloudSyncing=false;var lastCloudJSON=null;var cloudSaveTimer=null;var localSavedAt=null;
+function cloudPush(){
+  if(!CLOUD_DOC) return;
+  var payload={version:'2.7',debtors:debtors,savedAt:localSavedAt||new Date().toISOString()};
+  var json=JSON.stringify(payload);
+  if(json===lastCloudJSON) return;
+  CLOUD_DOC.set(payload).then(function(){
+    lastCloudJSON=json;
+  }).catch(function(e){
+    console.error('cloud save error',e);
+  });
+}
+function scheduleCloudPush(){clearTimeout(cloudSaveTimer);cloudSaveTimer=setTimeout(cloudPush,800);}
+function attachCloudSync(){
+  if(!CLOUD_DOC) return;
+  CLOUD_DOC.onSnapshot(function(doc){
+    if(!doc.exists){
+      if(debtors.length) scheduleCloudPush();
+      return;
+    }
+    var data=doc.data()||{};
+    var json=JSON.stringify(data);
+    if(json===lastCloudJSON) return;
+
+    var cloudTime=Date.parse(data.savedAt||'')||0;
+    var localTime=Date.parse(localSavedAt||'')||0;
+    if(localTime && cloudTime && localTime>cloudTime){
+      lastCloudJSON=null;
+      scheduleCloudPush();
+      return;
+    }
+
+    lastCloudJSON=json;
+    var normalized=normalizeData(data.debtors||[]);
+    debtors=normalized||[];
+    localSavedAt=data.savedAt||new Date().toISOString();
+    try{localStorage.setItem('khatabook_data',JSON.stringify({version:data.version||'2.7',debtors:debtors,savedAt:localSavedAt}));}catch(e){}
+    render();
+    toast('🔄 اطلاعات همگام‌سازی شد','success');
+  },function(err){console.error('cloud sync error',err);});
+}
+function manualSync(){
+  if(!CLOUD_DOC){toast('اتصال ابری در دسترس نیست','error');return;}
+  lastCloudJSON=null;
+  cloudPush();
+  toast('🔄 در حال همگام‌سازی...','success');
+}
+function save(){
+  localSavedAt=new Date().toISOString();
+  try{
+    localStorage.setItem('khatabook_data',JSON.stringify({version:'2.7',debtors:debtors,savedAt:localSavedAt}));
+  }catch(e){
+    toast('ذخیره‌سازی مرورگر در دسترس نیست','error');
+  }
+  scheduleCloudPush();
+}
+
+function load(){
+  try{
+    var x=localStorage.getItem('khatabook_data');
+    if(x){
+      var parsed=JSON.parse(x);
+      var normalized=normalizeData(parsed);
+      debtors=normalized||[];
+      localSavedAt=parsed&&parsed.savedAt?parsed.savedAt:null;
+    }else{
+      debtors=[];
+      localSavedAt=null;
+    }
+  }catch(e){
+    debtors=[];
+    localSavedAt=null;
+  }
+  attachCloudSync();
+}
+
+// ========================== بکاپ ==========================
+function exportBackup(){
+  if(!debtors.length){toast('داده‌ای نیست','error');return;}
+  downloadBackup('✅ بکاپ ذخیره شد');
+}
+
+function saveToKoder(){
+  if(!debtors.length){toast('داده‌ای نیست','error');return;}
+  downloadBackup('✅ از Share، گزینه Koder یا Save to Files را انتخاب کن');
+}
+
+function saveToDrive(){
+  if(!debtors.length){toast('داده‌ای نیست','error');return;}
+  downloadBackup('✅ از Share، گزینه Drive یا Save to Files را انتخاب کن');
+}
+
+function downloadBackup(message){
+  var data={version:'2.7',debtors:debtors,savedAt:new Date().toISOString()};
+  var json=JSON.stringify(data,null,2),filename='backup-khata-sultan.json';
+  var blob=new Blob([json],{type:'application/json;charset=utf-8'});
+  var shareFile=null;
+  try{shareFile=new File([json],filename,{type:'application/json'});}catch(e){}
+  if(shareFile&&navigator.share&&navigator.canShare){
+    try{
+      if(navigator.canShare({files:[shareFile]})){
+        navigator.share({files:[shareFile],title:'بکاپ دفتر حساب سلطان',text:'فایل بکاپ دفتر حساب'})
+          .then(function(){toast(message,'success');})
+          .catch(function(err){if(!err||err.name!=='AbortError')fallbackDownload(blob,filename,message);});
+        return;
+      }
+    }catch(e){}
+  }
+  fallbackDownload(blob,filename,message);
+}
+
+function fallbackDownload(blob,filename,message){
+  var url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=filename;a.rel='noopener';
+  a.style.display='none';document.body.appendChild(a);
+  try{a.click();}catch(e){toast('از منوی Share یا Save to Files استفاده کن','error');}
+  document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},1500);
+  toast(message,'success');
+}
+
+function triggerImport(){$('importFile').click();}
+
+function importBackup(e){
+  var file=e.target.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      var normalized=normalizeData(JSON.parse(ev.target.result));
+      if(normalized){debtors=normalized;save();current=null;$('detail').classList.remove('active');render();toast('✅ بازیابی شد','success');}
+      else toast('فرمت نامعتبر','error');
+    }catch(err){toast('فایل JSON نامعتبر است','error');}
+  };
+  reader.readAsText(file);e.target.value='';
+}
+
+function viewData(){
+  try{
+    var data=localStorage.getItem('khatabook_data');
+    if(data){
+      var p=JSON.parse(data);
+      var count=p.debtors?p.debtors.length:0;
+      var jsonText=JSON.stringify(p,null,2);
+      var h='<h3>📊 دیتا</h3><p>تعداد حساب: '+count+'</p>'+
+            '<pre id="dataDump" style="background:#2d2d2d;color:#fff;padding:10px;border-radius:8px;font-size:11px;overflow:auto;max-height:400px;direction:ltr;text-align:left;"></pre>'+
+            '<div class="buttons"><button class="confirm" onclick="closeModal()">بستن</button></div>';
+      modal(h);
+      $('dataDump').textContent=jsonText;
+      toast('✅ دیتا نمایش داده شد','success');
+    }else{toast('دیتایی نیست','error');}
+  }catch(e){toast('خطا','error');}
+}
+
+function toast(x,t){t=t||'';var el=$('toast');el.textContent=x;el.className='toast show'+(t?' '+t:'');clearTimeout(el._t);el._t=setTimeout(function(){el.className='toast';},3000);}
+function modal(html){$('modal').innerHTML=html;$('modalbg').classList.add('active');}
+function closeModal(){$('modalbg').classList.remove('active');}
+
+function actionTarget(node){
+  while(node&&node!==document){
+    if(node.getAttribute&&node.getAttribute('data-action'))return node;
+    node=node.parentNode;
+  }
+  return null;
+}
+
+document.addEventListener('click',function(e){
+  var btn=actionTarget(e.target);
+  if(!btn)return;
+  e.preventDefault();
+  var action=btn.getAttribute('data-action');
+  if(action==='backup')exportBackup();
+  else if(action==='koder')saveToKoder();
+  else if(action==='drive')saveToDrive();
+  else if(action==='import')triggerImport();
+  else if(action==='data')viewData();
+  else if(action==='lock')lockNow();
+  else if(action==='changepin')changePin();
+  else if(action==='sync')manualSync();
+  else if(action==='faceid')faceIDSettings();
+},true);
+
+// ========================== جستجو ==========================
+function searchItem(d,q){
+  if(normalizeDigits(String(d.name||'')).toLowerCase().indexOf(q)!==-1||normalizeDigits(String(d.phone||'')).toLowerCase().indexOf(q)!==-1||normalizeDigits(String(d.address||'')).toLowerCase().indexOf(q)!==-1||normalizeDigits(String(d.khataNumber||'')).toLowerCase().indexOf(q)!==-1)return true;
+  if(d.transactions)for(var i=0;i<d.transactions.length;i++){var t=d.transactions[i],hay=[t.date,t.details,t.receipt,t.debtVal,t.page,t.currency].join(' ');if(normalizeDigits(hay).toLowerCase().indexOf(q)!==-1)return true;}
+  return false;
+}
+
+// ========================== رندر ==========================
+function render(){
+  var q=normalizeDigits($('search').value).trim().toLowerCase();
+  var list=[];
+  if(q){for(var i=0;i<debtors.length;i++){if(searchItem(debtors[i],q))list.push(debtors[i]);}}else{list=debtors.slice();}
+
+  if(filterMode==='debtor')list=list.filter(function(d){return netRemaining(d)<0;});
+  else if(filterMode==='creditor')list=list.filter(function(d){return netRemaining(d)>0;});
+
+  if(sortMode==='name')list.sort(function(a,b){return String(a.name).localeCompare(String(b.name),'fa');});
+  else if(sortMode==='remDesc')list.sort(function(a,b){return netRemaining(a)-netRemaining(b);});
+  else if(sortMode==='remAsc')list.sort(function(a,b){return netRemaining(b)-netRemaining(a);});
+  else if(sortMode==='lastTx')list.sort(function(a,b){return lastTxDate(b).localeCompare(lastTxDate(a));});
+
+  var cntEl=$('accountCount');
+  if(cntEl){
+    cntEl.textContent = '('+num(debtors.length)+' حساب)';
+  }
+  
+  var tA=0,tD=0,uA=0,uD=0;
+  for(var i=0;i<debtors.length;i++){var t=getTotals(debtors[i]);tA+=t.afnR;tD+=t.afnD;uA+=t.usdR;uD+=t.usdD;}
+  $('summary').innerHTML=summaryCardsHtml(tA,uA,tD,uD);
+  
+  if(!list.length){$('rows').innerHTML='<tr><td colspan="6" class="empty-state">حسابی پیدا نشد</td></tr>';return;}
+
+  var maxDebtAbs=0;
+  for(var k=0;k<list.length;k++){var nr0=netRemaining(list[k]);if(nr0<0&&Math.abs(nr0)>maxDebtAbs)maxDebtAbs=Math.abs(nr0);}
+
+  var h='';
+  for(var i=0;i<list.length;i++){
+    var d=list[i],t=getTotals(d),idx=debtors.indexOf(d)+1,khata=d.khataNumber||'-';
+    var nr=netRemaining(d);
+    var isHot=maxDebtAbs>0&&nr<0&&Math.abs(nr)>=maxDebtAbs*0.6;
+    var rowCls=isHot?' class="hot-row"':'';
+    var remExtra=isHot?'🔥 ':'';
+    h+='<tr'+rowCls+' tabindex="0" data-id="'+esc(d.id)+'"><td>'+idx+'</td><td style="font-weight:bold;text-align:right;">'+esc(d.name)+'</td><td>'+esc(khata)+'</td><td class="cell-receipt">'+fmt(t.afnR,t.usdR)+'</td><td class="cell-debt">'+fmt(t.afnD,t.usdD)+'</td><td class="cell-remaining">'+remExtra+fmt(t.afnRem,t.usdRem)+'</td></tr>';
+  }
+  $('rows').innerHTML=h;
+}
+
+$('rows').addEventListener('click',function(e){
+  var row=e.target.closest('tr[data-id]');
+  if(row)openDetail(row.getAttribute('data-id'));
+});
+$('rows').addEventListener('keydown',function(e){
+  if(e.key==='Enter'||e.key===' '){var row=e.target.closest('tr[data-id]');if(row){e.preventDefault();openDetail(row.getAttribute('data-id'));}}
+});
+
+// ========================== اضافه کردن حساب ==========================
+function addDebtor(){
+  modal('<h3>➕ حساب جدید</h3><label>نام *</label><input id="n" type="text" placeholder="نام را وارد کنید" autofocus><label>تلفن</label><input id="p" type="tel" inputmode="numeric" lang="en" dir="ltr" placeholder="شماره تماس" oninput="normalizeNumberInput(this)"><label>نمبر کهاته</label><input id="kn" type="text" inputmode="numeric" lang="en" dir="ltr" placeholder="شماره کهاته" oninput="normalizeNumberInput(this)"><label>آدرس</label><input id="a" type="text" placeholder="آدرس را وارد کنید"><div class="section-divider">معامله اول (اختیاری)</div><label>نوع</label><select id="txType"><option value="none">بدون معامله</option><option value="receipt">رسید</option><option value="debt">قرض</option></select><label>ارز</label><select id="curr"><option value="AFN">AFN</option><option value="USD">USD</option></select><label>تاریخ</label><input id="txDate" type="text" inputmode="numeric" lang="en" dir="ltr" value="'+today()+'" oninput="normalizeDateInput(this)"><label>مبلغ</label><input id="amt" type="text" inputmode="decimal" lang="en" dir="ltr" placeholder="مبلغ معامله" style="text-align:left;" oninput="sanitizeAmountInput(this)"><label>شرح</label><input id="det" type="text" placeholder="مثلاً بابت اجناس"><label>بل</label><input id="page" type="text" inputmode="numeric" lang="en" dir="ltr" placeholder="شماره بل" oninput="normalizeNumberInput(this)"><div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button><button class="confirm" id="saveD">ثبت حساب</button></div>');
+  
+  $('saveD').onclick=function(){
+    var n=$('n').value.trim();if(!n){toast('نام را وارد کنید','error');$('n').focus();return;}
+    for(var i=0;i<debtors.length;i++){if(debtors[i].name.toLowerCase()===n.toLowerCase()){toast('❌ اسم تکراری است','error');$('n').focus();$('n').select();return;}}
+    var nd={id:Date.now(),name:n,phone:$('p').value.trim(),khataNumber:$('kn').value.trim(),address:$('a').value.trim(),transactions:[]};
+    var type=$('txType').value;
+    if(type!=='none'){
+      var amt=amount($('amt').value);
+      if(!isFinite(amt)){toast('برای معامله اول مبلغ معتبر وارد کنید','error');$('amt').focus();return;}
+      var isR=type==='receipt';
+      nd.transactions.push({id:Date.now()+1,date:normalizeDateValue($('txDate').value.trim()||today()),currency:$('curr').value,details:$('det').value.trim()||(isR?'رسید':'قرض'),receipt:isR?amt:0,debtVal:isR?0:amt,page:$('page').value.trim()||''});
+    }
+    debtors.push(nd);save();closeModal();render();toast('✅ حساب اضافه شد','success');
+  };
+  setTimeout(function(){var el=$('n');if(el)el.focus();},300);
+}
+
+// ========================== جزئیات ==========================
+function openDetail(id){current=id;$('detail').classList.add('active');renderDetail();}
+function closeDetail(){$('detail').classList.remove('active');current=null;render();}
+
+function renderDetail(){
+  var d=null;for(var i=0;i<debtors.length;i++){if(+debtors[i].id===+current){d=debtors[i];break;}}if(!d)return;
+  $('title').textContent='صورت حساب: '+d.name;
+  var t=getTotals(d);
+  var h='<div class="info"><div class="info-row">'+
+    '<div class="info-avatar-col"><div class="info-avatar" id="infoAvatar">'+(d.photo?'<img src="'+esc(d.photo)+'">':'<span class="placeholder-ico">👤</span>')+'<span class="cam-badge">📷</span></div></div>'+
+    '<div class="info-fields">'+
+      '<div class="field-line"><span class="field-btn field-edit" onclick="editField(\'name\')">✎</span><span class="field-val">'+esc(d.name)+'</span><span class="field-label">اسم:</span><span class="icon-dot name">👤</span></div>'+
+      '<div class="field-line"><span class="field-btn field-edit" onclick="editField(\'address\')">✎</span><span class="field-btn field-map" onclick="openDebtorMapCurrent()" title="مسیریابی">🧭</span><span class="field-val">'+esc(d.address||'ثبت نشده')+'</span><span class="field-label">آدرس:</span><span class="icon-dot addr">📍</span></div>'+
+      '<div class="field-line"><span class="field-btn field-edit" onclick="editField(\'phone\')">✎</span><span class="field-btn field-call" onclick="callDebtorPhone()" title="تماس">📞</span><span class="field-val" style="direction:ltr">'+esc(d.phone||'ثبت نشده')+'</span><span class="field-label">تلفن:</span><span class="icon-dot phone">📞</span></div>'+
+      '<div class="field-line"><span class="field-btn field-edit" onclick="editField(\'khataNumber\')">✎</span><span class="field-val" style="direction:ltr">'+esc(d.khataNumber||'ثبت نشده')+'</span><span class="field-label">نمبر کهاته:</span><span class="icon-dot khata">📒</span></div>'+
+    '</div>'+
+  '</div></div>'+
+  '<div class="summary">'+summaryCardsHtml(t.afnR,t.usdR,t.afnD,t.usdD)+'</div><div class="table-wrapper"><table class="custom-table detail-table"><colgroup><col style="width:19%"><col style="width:19%"><col style="width:8%"><col style="width:16%"><col style="width:16%"><col style="width:22%"></colgroup><thead><tr><th>تاریخ</th><th>شرح</th><th>بل</th><th>رسید</th><th>قرض</th><th>باقی پس از معامله</th></tr></thead><tbody>';
+  if(!d.transactions||!d.transactions.length){h+='<tr><td colspan="6" class="empty-state">هنوز معامله‌ای ثبت نشده</td></tr>';}else{
+    var s=d.transactions.slice().sort(function(a,b){return String(a.date||'').localeCompare(String(b.date||''));});
+    var runA=0,runU=0;
+    for(var i=0;i<s.length;i++){var tx=s[i],c=tx.currency||'AFN',r=tx.receipt!==undefined?tx.receipt:tx.debt,db=tx.debtVal!==undefined?tx.debtVal:tx.paid;
+    c=c==='USD'?'USD':'AFN';
+    var rr=storedAmount(r),dd=storedAmount(db);
+    if(c==='USD')runU+=rr-dd;else runA+=rr-dd;
+    h+='<tr tabindex="0" data-tx-id="'+esc(tx.id)+'"><td dir="ltr">'+esc(tx.date)+'</td><td style="text-align:right;">'+esc(tx.details)+'</td><td>'+esc(tx.page||'')+'</td><td class="cell-receipt">'+(rr?amtHtml(rr,c):'-')+'</td><td class="cell-debt">'+(dd?amtHtml(dd,c):'-')+'</td><td class="cell-remaining">'+fmt(runA,runU)+'</td></tr>';}
+  }
+  h+='</tbody></table></div><div class="balance">باقی مانده فعلی: <br><b>'+fmt(t.afnRem,t.usdRem)+'</b></div><div class="actions"><button class="btn-receipt" onclick="openTransaction(true)">+ رسید جدید</button><button class="btn-debt" onclick="openTransaction(false)">+ قرض جدید</button></div>';
+  h+='<div class="detail-bottom-bar">'+
+    '<div class="round-btn" id="photoBtn" title="عکس مشتری">📷'+(d.photo?'<span class="badge">1</span>':'')+'</div>'+
+    '<div class="round-btn wa" id="waBtn" title="ارسال به واتساپ">📲</div>'+
+    '<div class="round-btn print" id="printBtn" title="چاپ / PDF">🖨️</div>'+
+    '<div class="round-btn" id="syncBtn" title="همگام‌سازی">🔄</div>'+
+    '<div class="round-btn" id="mapBtn" title="مسیریابی">🧭</div>'+
+    '<input type="file" id="photoInputCamera" accept="image/*" capture="environment" style="display:none">'+
+    '<input type="file" id="photoInputGallery" accept="image/*" style="display:none">'+
+  '</div>';
+  $('detailBody').innerHTML=h;
+  var txRows=$('detailBody').querySelectorAll('tr[data-tx-id]');
+  for(var q=0;q<txRows.length;q++){
+    txRows[q].addEventListener('click',function(){editTransaction(this.getAttribute('data-tx-id'));});
+    txRows[q].addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();editTransaction(this.getAttribute('data-tx-id'));}});
+  }
+  $('photoBtn').onclick=function(){ openDebtorPhoto(d); };
+  $('waBtn').onclick=function(){ sendStatementWhatsApp(d); };
+  $('printBtn').onclick=function(){ printStatement(d); };
+  $('syncBtn').onclick=function(){ manualSync(); };
+  $('mapBtn').onclick=function(){ openDebtorMapCurrent(); };
+  $('photoInputCamera').onchange=function(ev){ handlePhotoSelected(ev, d); };
+  $('photoInputGallery').onchange=function(ev){ handlePhotoSelected(ev, d); };
+  $('infoAvatar').onclick=function(){ if(d.photo){ openFullscreenPhoto(d); } else { openDebtorPhoto(d); } };
+}
+
+// ========================== ارسال واتساپ / چاپ صورت حساب ==========================
+function buildStatementText(d){
+  var t=getTotals(d);
+  var lines=[];
+  lines.push('📒 صورت حساب: '+d.name);
+  if(d.khataNumber)lines.push('نمبر کهاته: '+d.khataNumber);
+  if(d.address)lines.push('آدرس: '+d.address);
+  lines.push('');
+  var s=sortedTx(d);
+  if(s.length){
+    var runA=0,runU=0;
+    for(var i=0;i<s.length;i++){
+      var tx=s[i],c=tx.currency||'AFN',rr=storedAmount(tx.receipt),dd=storedAmount(tx.debtVal);
+      if(c==='USD')runU+=rr-dd;else runA+=rr-dd;
+      var line=tx.date+' | '+tx.details;
+      if(rr)line+=' | رسید: '+num(rr)+' '+c;
+      if(dd)line+=' | قرض: '+num(dd)+' '+c;
+      lines.push(line);
+    }
+  }else{
+    lines.push('هنوز معامله‌ای ثبت نشده');
+  }
+  lines.push('');
+  lines.push('باقی مانده فعلی: '+(t.afnRem?num(t.afnRem)+' AFN ':'')+(t.usdRem?num(t.usdRem)+' USD':''));
+  return lines.join('\n');
+}
+function sendStatementWhatsApp(d){
+  var text=encodeURIComponent(buildStatementText(d));
+  var phoneDigits=String(d.phone||'').replace(/\D/g,'');
+  var url=phoneDigits?('https://wa.me/'+phoneDigits+'?text='+text):('https://api.whatsapp.com/send?text='+text);
+  window.open(url,'_blank');
+}
+function printStatement(d){
+  var t=getTotals(d);
+  var s=sortedTx(d);
+  var rows='';
+  var runA=0,runU=0;
+  if(s.length){
+    for(var i=0;i<s.length;i++){
+      var tx=s[i],c=tx.currency||'AFN',rr=storedAmount(tx.receipt),dd=storedAmount(tx.debtVal);
+      if(c==='USD')runU+=rr-dd;else runA+=rr-dd;
+      rows+='<tr><td>'+esc(tx.date)+'</td><td style="text-align:right">'+esc(tx.details)+'</td><td>'+(rr?num(rr)+' '+c:'-')+'</td><td>'+(dd?num(dd)+' '+c:'-')+'</td></tr>';
+    }
+  }else{
+    rows='<tr><td colspan="4" style="text-align:center">هنوز معامله‌ای ثبت نشده</td></tr>';
+  }
+  var html='<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><title>صورت حساب '+esc(d.name)+'</title>'+
+    '<style>body{font-family:Tahoma,sans-serif;padding:20px;color:#222}h1{font-size:18px;border-bottom:2px solid #c40d0d;padding-bottom:8px}'+
+    'table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border:1px solid #999;padding:6px;font-size:12px;text-align:center}'+
+    'th{background:#eee}.meta{font-size:13px;margin:4px 0}.bal{margin-top:14px;font-size:15px;font-weight:bold;text-align:center;border:1.5px solid #c40d0d;padding:10px;border-radius:8px}</style></head><body>'+
+    '<h1>📒 صورت حساب: '+esc(d.name)+'</h1>'+
+    (d.khataNumber?'<div class="meta">نمبر کهاته: '+esc(d.khataNumber)+'</div>':'')+
+    (d.address?'<div class="meta">آدرس: '+esc(d.address)+'</div>':'')+
+    (d.phone?'<div class="meta">تلفن: '+esc(d.phone)+'</div>':'')+
+    '<table><thead><tr><th>تاریخ</th><th>شرح</th><th>رسید</th><th>قرض</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+    '<div class="bal">باقی مانده فعلی: '+(t.afnRem?num(t.afnRem)+' AFN ':'')+(t.usdRem?num(t.usdRem)+' USD':'')+'</div>'+
+    '<script>window.onload=function(){window.print();};<\/script>'+
+    '</body></html>';
+  var win=window.open('','_blank');
+  if(!win){toast('اجازه بازکردن پنجره داده نشد؛ Pop-up را فعال کنید','error');return;}
+  win.document.open();win.document.write(html);win.document.close();
+}
+
+function openFullscreenPhoto(d){
+  if(!d.photo) return;
+  $('pvImg').src=d.photo;
+  $('photoViewer').classList.add('active');
+  $('pvCloseBtn').onclick=function(){ closePhotoViewer(); };
+  $('pvChangeBtn').onclick=function(){ closePhotoViewer(); setTimeout(function(){ openDebtorPhoto(d); },200); };
+  $('pvDeleteBtn').onclick=function(){
+    if(confirm('عکس حذف شود؟')){ delete d.photo; save(); closePhotoViewer(); renderDetail(); toast('✅ عکس حذف شد','success'); }
+  };
+}
+
+function closePhotoViewer(){
+  $('photoViewer').classList.remove('active');
+  $('pvImg').src='';
+}
+
+function openDebtorPhoto(d){
+  if(d.photo){
+    modal('<h3>📷 عکس مشتری</h3>'+
+      '<div style="text-align:center;margin:10px 0;"><img src="'+esc(d.photo)+'" style="max-width:100%;max-height:340px;border-radius:12px;border:1.5px solid var(--border);"></div>'+
+      '<div class="buttons"><button class="cancel" onclick="closeModal()">بستن</button><button class="confirm red" id="delPhotoBtn">🗑 حذف عکس</button></div>'+
+      '<div class="buttons"><button class="confirm gold" id="cameraBtn2" style="background:linear-gradient(180deg,#ffe066,#d49500)">📷 دوربین</button><button class="confirm blue" id="galleryBtn2">🖼 گالری</button></div>');
+    $('delPhotoBtn').onclick=function(){
+      if(confirm('عکس حذف شود؟')){ delete d.photo; save(); closeModal(); renderDetail(); toast('✅ عکس حذف شد','success'); }
+    };
+    $('cameraBtn2').onclick=function(){ $('photoInputCamera').click(); closeModal(); };
+    $('galleryBtn2').onclick=function(){ $('photoInputGallery').click(); closeModal(); };
+  } else {
+    modal('<h3>📷 افزودن عکس مشتری</h3>'+
+      '<p style="font-size:12px;color:#666;text-align:center;margin-bottom:10px;">عکس را از دوربین بگیرید یا از گالری انتخاب کنید</p>'+
+      '<div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button><button class="confirm gold" id="cameraBtn1" style="background:linear-gradient(180deg,#ffe066,#d49500)">📷 دوربین</button><button class="confirm blue" id="galleryBtn1">🖼 گالری</button></div>');
+    $('cameraBtn1').onclick=function(){ $('photoInputCamera').click(); closeModal(); };
+    $('galleryBtn1').onclick=function(){ $('photoInputGallery').click(); closeModal(); };
+  }
+}
+
+function handlePhotoSelected(ev, d){
+  var file=ev.target.files&&ev.target.files[0];
+  if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    d.photo=e.target.result;
+    save();
+    renderDetail();
+    toast('✅ عکس ذخیره شد','success');
+  };
+  reader.onerror=function(){ toast('خطا در خواندن عکس','error'); };
+  reader.readAsDataURL(file);
+  ev.target.value='';
+}
+
+function openDebtorMap(d){
+  if(!d.address||!d.address.trim()){ toast('آدرسی برای این حساب ثبت نشده','error'); return; }
+  var url='https://maps.google.com/?q='+encodeURIComponent(d.address.trim());
+  window.open(url,'_blank');
+}
+
+// ========================== معامله ==========================
+function openTransaction(isR){
+  var title=isR?'ثبت رسید جدید':'ثبت قرض جدید',btn=isR?'ثبت رسید':'ثبت قرض',cls=isR?'green':'blue',col=isR?'var(--green)':'var(--blue)';
+  modal('<h3 style="color:'+col+'">'+title+'</h3><label>ارز</label><select id="curr"><option value="AFN">AFN</option><option value="USD">USD</option></select><label>تاریخ</label><input id="txDate" type="text" inputmode="numeric" lang="en" dir="ltr" value="'+today()+'" oninput="normalizeDateInput(this)"><label>مبلغ</label><input id="amt" type="text" inputmode="decimal" lang="en" dir="ltr" placeholder="مبلغ را وارد کنید" style="text-align:left;" oninput="sanitizeAmountInput(this)"><label>شرح</label><input id="det" type="text" placeholder="شرح معامله"><label>بل</label><input id="page" type="text" inputmode="numeric" lang="en" dir="ltr" placeholder="شماره بل" oninput="normalizeNumberInput(this)"><div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button><button class="confirm '+cls+'" id="saveTx">'+btn+'</button></div>');
+  $('saveTx').onclick=function(){
+    var v=amount($('amt').value);if(!isFinite(v)){toast('مبلغ معتبر وارد کنید','error');$('amt').focus();return;}
+    var d=null;for(var i=0;i<debtors.length;i++){if(+debtors[i].id===+current){d=debtors[i];break;}}if(!d){toast('حساب پیدا نشد','error');return;}
+    d.transactions.push({id:Date.now(),date:normalizeDateValue($('txDate').value.trim()||today()),currency:$('curr').value,details:$('det').value.trim()||(isR?'رسید':'قرض'),receipt:isR?v:0,debtVal:isR?0:v,page:$('page').value.trim()||''});
+    save();closeModal();renderDetail();render();toast('✅ معامله ثبت شد','success');
+  };
+  setTimeout(function(){var el=$('amt');if(el)el.focus();},300);
+}
+
+function editTransaction(txId){
+  var d=null;for(var j=0;j<debtors.length;j++){if(+debtors[j].id===+current){d=debtors[j];break;}}if(!d)return;
+  var tIdx=-1;for(var k=0;k<d.transactions.length;k++){if(+d.transactions[k].id===+txId){tIdx=k;break;}}if(tIdx===-1)return;
+  var t=d.transactions[tIdx],isR=(+t.receipt||+t.debt)>0,v=isR?(t.receipt||t.debt):(t.debtVal||t.paid),curr=t.currency||'AFN';
+  modal('<h3>ویرایش معامله</h3><label>ارز</label><select id="curr"><option value="AFN"'+(curr==='AFN'?' selected':'')+'>AFN</option><option value="USD"'+(curr==='USD'?' selected':'')+'>USD</option></select><label>تاریخ</label><input id="txDate" type="text" inputmode="numeric" lang="en" dir="ltr" value="'+esc(t.date)+'" oninput="normalizeDateInput(this)"><label>مبلغ</label><input id="amt" type="text" inputmode="decimal" lang="en" dir="ltr" placeholder="مبلغ" style="text-align:left;" value="'+esc(v)+'" oninput="sanitizeAmountInput(this)"><label>شرح</label><input id="det" type="text" value="'+esc(t.details)+'"><label>بل</label><input id="page" type="text" inputmode="numeric" lang="en" dir="ltr" value="'+esc(t.page||'')+'" oninput="normalizeNumberInput(this)"><div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button><button class="confirm red" id="delTx">🗑 حذف</button><button class="confirm" id="saveTx">💾 ذخیره</button></div>');
+  $('delTx').onclick=function(){if(confirm('آیا مطمئن هستید؟')){d.transactions.splice(tIdx,1);save();closeModal();renderDetail();render();toast('✅ حذف شد','success');}};
+   $('saveTx').onclick=function(){var v2=amount($('amt').value);if(!isFinite(v2)){toast('مبلغ معتبر','error');$('amt').focus();return;}t.currency=$('curr').value;t.receipt=isR?v2:0;t.debtVal=isR?0:v2;t.details=$('det').value.trim()||'معامله';t.page=$('page').value.trim()||'';var nd=$('txDate').value.trim();if(nd)t.date=normalizeDateValue(nd);save();closeModal();renderDetail();render();toast('✅ ویرایش شد','success');};
+}
+
+function openDebtorMapCurrent(){
+  var d=null;for(var j=0;j<debtors.length;j++){if(+debtors[j].id===+current){d=debtors[j];break;}}if(!d)return;
+  openDebtorMap(d);
+}
+
+function callDebtorPhone(){
+  var d=null;for(var j=0;j<debtors.length;j++){if(+debtors[j].id===+current){d=debtors[j];break;}}if(!d)return;
+  if(!d.phone||!d.phone.trim()){toast('شماره تلفن ثبت نشده','error');return;}
+  window.location.href='tel:'+d.phone.trim();
+}
+
+function editField(kind){
+  var d=null;for(var j=0;j<debtors.length;j++){if(+debtors[j].id===+current){d=debtors[j];break;}}if(!d)return;
+  var cfg={
+    name:{title:'✎ ویرایش اسم',label:'اسم',type:'text',dir:'rtl',extra:'',val:d.name},
+    address:{title:'✎ ویرایش آدرس',label:'آدرس',type:'text',dir:'rtl',extra:'',val:d.address||''},
+    phone:{title:'✎ ویرایش تلفن',label:'تلفن',type:'tel',dir:'ltr',extra:'inputmode="numeric" lang="en" oninput="normalizeNumberInput(this)"',val:d.phone||''},
+    khataNumber:{title:'✎ ویرایش نمبر کهاته',label:'نمبر کهاته',type:'text',dir:'ltr',extra:'inputmode="numeric" lang="en" oninput="normalizeNumberInput(this)"',val:d.khataNumber||''}
+  };
+  var c=cfg[kind];if(!c)return;
+  modal('<h3>'+c.title+'</h3><label>'+c.label+'</label><input id="fVal" type="'+c.type+'" '+c.extra+' dir="'+c.dir+'" value="'+esc(c.val)+'"><div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button><button class="confirm" id="saveFieldBtn">💾 ذخیره</button></div>');
+  $('saveFieldBtn').onclick=function(){
+    var v=$('fVal').value.trim();
+    if(kind==='name'){ if(!v){toast('نام را وارد کنید','error');$('fVal').focus();return;} d.name=v; }
+    else if(kind==='address'){ d.address=v; }
+    else if(kind==='phone'){ d.phone=v; }
+    else if(kind==='khataNumber'){ d.khataNumber=v; }
+    save();closeModal();renderDetail();render();toast('✅ ذخیره شد','success');
+  };
+  setTimeout(function(){var el=$('fVal');if(el){el.focus();if(el.select)el.select();}},300);
+}
+
+function editInfo(){
+  var d=null;for(var j=0;j<debtors.length;j++){if(+debtors[j].id===+current){d=debtors[j];break;}}if(!d)return;
+  modal('<h3>ویرایش معلومات</h3><label>نام</label><input id="n" type="text" value="'+esc(d.name)+'"><label>آدرس</label><input id="a" type="text" value="'+esc(d.address||'')+'"><label>تلفن</label><input id="p" type="tel" inputmode="numeric" lang="en" dir="ltr" value="'+esc(d.phone||'')+'" oninput="normalizeNumberInput(this)"><label>نمبر کهاته</label><input id="kn" type="text" inputmode="numeric" lang="en" dir="ltr" value="'+esc(d.khataNumber||'')+'" oninput="normalizeNumberInput(this)"><div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button><button class="confirm red" id="delD">🗑 حذف حساب</button><button class="confirm" id="saveD">💾 ذخیره</button></div>');
+  $('delD').onclick=function(){if(confirm('آیا مطمئن هستید؟')){debtors=debtors.filter(function(item){return +item.id!==+current;});save();closeModal();closeDetail();toast('✅ حذف شد','success');}};
+  $('saveD').onclick=function(){var n=$('n').value.trim();if(!n){toast('نام را وارد کنید','error');$('n').focus();return;}d.name=n;d.address=$('a').value.trim();d.phone=$('p').value.trim();d.khataNumber=$('kn').value.trim();save();closeModal();renderDetail();render();toast('✅ ذخیره شد','success');};
+  setTimeout(function(){var el=$('n');if(el)el.focus();},300);
+}
+
+// ========================== چت هوش مصنوعی ==========================
+var chatConversation = [];
+var pendingDangerousCall = null;
+
+function isExplicitChatConfirmation(text){
+  var s = normalizeDigits(String(text || '').trim().toLowerCase())
+    .replace(/[‌\s]/g,'');
+  return /^(بله|بلی|تایید|تاییدشد|تاییدمیکنم|مطمئنم|انجامبده|انجامشده|yes|ok|sure|confirm)$/.test(s);
+}
+
+function isExplicitChatCancellation(text){
+  var s = String(text || '').trim().toLowerCase().replace(/[‌\s]/g,'');
+  return /^(نه|خیر|لغو|انصراف|cancel|no)$/.test(s);
+}
+
+function dangerousToolLabel(name){
+  if(name === 'delete_account') return 'حذف کامل حساب و تمام معاملات آن';
+  if(name === 'delete_transaction') return 'حذف معامله انتخاب‌شده';
+  if(name === 'restore_backup') return 'جایگزین کردن تمام اطلاعات فعلی با بکاپ';
+  return 'این عملیات';
+}
+
+var TOOL_LABELS = {
+  add_account:'افزودن حساب جدید',
+  add_transaction:'ثبت معامله',
+  edit_account:'ویرایش حساب',
+  delete_account:'حذف حساب',
+  list_accounts:'جستجوی حساب‌ها',
+  get_account_details:'دریافت جزئیات حساب',
+  edit_transaction:'ویرایش معامله',
+  delete_transaction:'حذف معامله',
+  get_summary:'دریافت خلاصه کلی',
+  create_backup:'گرفتن بکاپ',
+  restore_backup:'بازیابی از بکاپ',
+  open_account_view:'باز کردن صفحه حساب'
+};
+
+var CHAT_TOOLS = [
+  { name:'add_account', description:'اضافه کردن یک حساب/مشتری جدید به دفتر.',
+    input_schema:{ type:'object', properties:{
+      name:{type:'string', description:'نام مشتری/حساب (الزامی)'},
+      phone:{type:'string', description:'شماره تلفن (اختیاری)'},
+      address:{type:'string', description:'آدرس (اختیاری)'}
+    }, required:['name'] } },
+
+  { name:'add_transaction', description:'ثبت یک معامله جدید (رسید یا قرض) برای یک حساب موجود.',
+    input_schema:{ type:'object', properties:{
+      account_name:{type:'string', description:'نام حساب موجود'},
+      type:{type:'string', enum:['receipt','debt'], description:'receipt=رسید (پول دریافت‌شده)، debt=قرض (بدهکار شدن مشتری)'},
+      amount:{type:'number', description:'مبلغ (عدد مثبت)'},
+      currency:{type:'string', enum:['AFN','USD'], description:'واحد پول، پیش‌فرض AFN'},
+      date:{type:'string', description:'تاریخ به فرمت YYYY/MM/DD؛ اگر ذکر نشود امروز در نظر گرفته می‌شود'},
+      details:{type:'string', description:'شرح معامله'},
+      page:{type:'string', description:'شماره بل (اختیاری)'}
+    }, required:['account_name','type','amount'] } },
+
+  { name:'edit_account', description:'ویرایش نام، تلفن یا آدرس یک حساب موجود.',
+    input_schema:{ type:'object', properties:{
+      account_name:{type:'string', description:'نام فعلی حساب'},
+      new_name:{type:'string'}, phone:{type:'string'}, address:{type:'string'}
+    }, required:['account_name'] } },
+
+  { name:'delete_account', description:'حذف کامل یک حساب و تمام معاملاتش. غیرقابل‌بازگشت — فقط پس از تاییدیه صریح کاربر در چت صدا زده شود.',
+    input_schema:{ type:'object', properties:{ account_name:{type:'string'} }, required:['account_name'] } },
+
+  { name:'list_accounts', description:'گرفتن لیست حساب‌ها همراه با مجموع رسید/قرض/باقی هرکدام. اگر query داده شود فقط حساب‌های منطبق برگردانده می‌شود.',
+    input_schema:{ type:'object', properties:{ query:{type:'string'} } } },
+
+  { name:'get_account_details', description:'گرفتن اطلاعات کامل یک حساب شامل تمام معاملات به‌ترتیب تاریخ همراه با شماره ردیف (index) هرکدام — لازم قبل از ویرایش/حذف یک معامله خاص.',
+    input_schema:{ type:'object', properties:{ account_name:{type:'string'} }, required:['account_name'] } },
+
+  { name:'edit_transaction', description:'ویرایش یک معامله مشخص با شماره ردیف آن (transaction_index از get_account_details گرفته شود).',
+    input_schema:{ type:'object', properties:{
+      account_name:{type:'string'}, transaction_index:{type:'integer'},
+      type:{type:'string', enum:['receipt','debt']}, amount:{type:'number'},
+      currency:{type:'string', enum:['AFN','USD']}, date:{type:'string'},
+      details:{type:'string'}, page:{type:'string'}
+    }, required:['account_name','transaction_index'] } },
+
+  { name:'delete_transaction', description:'حذف یک معامله مشخص با شماره ردیف آن. غیرقابل‌بازگشت — فقط پس از تاییدیه صریح کاربر صدا زده شود.',
+    input_schema:{ type:'object', properties:{
+      account_name:{type:'string'}, transaction_index:{type:'integer'}
+    }, required:['account_name','transaction_index'] } },
+
+  { name:'get_summary', description:'گرفتن مجموع کلی رسید، قرض و باقی‌مانده همه حساب‌ها با هم.',
+    input_schema:{ type:'object', properties:{} } },
+
+  { name:'create_backup', description:'گرفتن یک فایل بکاپ (پشتیبان) از تمام داده‌های برنامه و دانلود/اشتراک‌گذاری آن — همان کاری که دکمه «📥 بکاپ» در بالای صفحه انجام می‌دهد.',
+    input_schema:{ type:'object', properties:{} } },
+
+  { name:'restore_backup', description:'بازیابی داده‌ها از یک متن JSON بکاپ که کاربر مستقیماً در چت فرستاده. توجه: این عملیات تمام داده‌های فعلی برنامه را با محتوای بکاپ جایگزین می‌کند و غیرقابل‌بازگشت است — فقط پس از تاییدیه صریح کاربر صدا زده شود.',
+    input_schema:{ type:'object', properties:{
+      json_data:{type:'string', description:'محتوای کامل فایل بکاپ JSON که کاربر فرستاده است'}
+    }, required:['json_data'] } },
+
+  { name:'open_account_view', description:'باز کردن صفحه جزئیات یک حساب در برنامه برای نمایش به کاربر (فقط ناوبری، تغییری در داده نمی‌دهد).',
+    input_schema:{ type:'object', properties:{ account_name:{type:'string'} }, required:['account_name'] } }
+];
+
+var CHAT_SYSTEM_PROMPT =
+  'شما دستیار مدیریت «دفتر کهاته سلطان» هستید، یک برنامه دفترچه حساب/قرض. '+
+  'همیشه به زبان فارسی/دری روان و محاوره‌ای پاسخ بده. برای هرگونه تغییر در داده‌ها (افزودن، ویرایش، حذف) حتماً از ابزارهای موجود استفاده کن؛ خودت مستقیماً چیزی را «فرض» نکن. '+
+  'واحد پول پیش‌فرض AFN است مگر کاربر USD بگوید. اگر تاریخ ذکر نشد، از تاریخ امروز استفاده کن (نیازی به پرسیدن نیست). '+
+  'قبل از فراخوانی delete_account، delete_transaction یا restore_backup، حتماً یک‌بار در پیام متنی توضیح بده دقیقاً چه چیزی حذف/جایگزین خواهد شد و از کاربر تاییدیه صریح بخواه (مثل «بله»، «تایید»، «مطمئنم»)؛ فقط پس از دریافت تاییدیه در پیام بعدی کاربر، ابزار مربوطه را صدا بزن. توجه: restore_backup تمام داده‌های فعلی را پاک و جایگزین می‌کند. '+
+  'برای افزودن یا ویرایش نیازی به تاییدیه نیست، مگر اطلاعات ضروری (مثل نام یا مبلغ) داده نشده باشد که باید بپرسی. '+
+  'اگر نام حسابی که کاربر گفت پیدا نشد یا چند حساب مشابه بود، نتیجه ابزار را ببین و از کاربر برای دقیق‌تر کردن نام بپرس. '+
+  'برای ویرایش یا حذف یک معامله خاص، ابتدا با get_account_details شماره ردیف (index) معامله موردنظر را پیدا کن. '+
+  'پاسخ‌های خود را کوتاه و مفید نگه دار.';
+
+function loadChatHistory(){
+  try{
+    var x = localStorage.getItem('khatabook_chat_gemini_v1');
+    chatConversation = x ? JSON.parse(x) : [];
+  }catch(e){ chatConversation = []; }
+}
+function saveChatHistory(){
+  try{ localStorage.setItem('khatabook_chat_gemini_v1', JSON.stringify(chatConversation)); }catch(e){}
+}
+
+function getApiKey(){ try{ return localStorage.getItem('khatabook_gemini_key')||''; }catch(e){ return ''; } }
+function setApiKey(k){ try{ localStorage.setItem('khatabook_gemini_key', k); }catch(e){} }
+
+function promptForApiKey(){
+  var currentKey = getApiKey();
+  modal('<h3>⚙️ کلید API جیمینی (رایگان)</h3>'+
+    '<p style="font-size:12px;color:#666;margin:0 0 8px;">این کلید رایگان است و نیازی به شارژ پول ندارد. برای گرفتن آن:</p>'+
+    '<p style="font-size:12px;color:#666;margin:0 0 8px;">۱) به آدرس <b dir="ltr">aistudio.google.com/apikey</b> بروید<br>۲) با حساب گوگل وارد شوید<br>۳) روی «Create API key» بزنید و آن را کپی کنید</p>'+
+    '<label>کلید API (شروع با AIza)</label>'+
+    '<input id="apiKeyInput" type="password" dir="ltr" placeholder="AIza..." value="'+esc(currentKey)+'">'+
+    '<p style="font-size:11px;color:var(--red);margin-top:8px;">⚠️ این کلید فقط روی همین گوشی/مرورگر و به‌صورت خام ذخیره می‌شود. با کسی به اشتراک نگذارید.</p>'+
+    '<div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button>'+
+    (currentKey ? '<button class="confirm red" id="clearKeyBtn">حذف کلید</button>' : '')+
+    '<button class="confirm" id="saveKeyBtn">ذخیره</button></div>');
+  $('saveKeyBtn').onclick = function(){
+    var k = $('apiKeyInput').value.trim();
+    if(!k){ toast('کلید را وارد کنید','error'); return; }
+    setApiKey(k);
+    closeModal();
+    toast('✅ کلید ذخیره شد','success');
+    renderChatMessages();
+  };
+  var clearBtn = $('clearKeyBtn');
+  if(clearBtn){
+    clearBtn.onclick = function(){
+      if(confirm('کلید API حذف شود؟')){
+        localStorage.removeItem('khatabook_gemini_key');
+        closeModal();
+        toast('کلید حذف شد','success');
+        renderChatMessages();
+      }
+    };
+  }
+  setTimeout(function(){ var el=$('apiKeyInput'); if(el) el.focus(); }, 200);
+}
+
+function openChat(){
+  $('chatPanel').classList.add('active');
+  renderChatMessages();
+  setTimeout(function(){ var el=$('chatInput'); if(el) el.focus(); }, 200);
+}
+function closeChat(){ $('chatPanel').classList.remove('active'); }
+function clearChat(){
+  if(!chatConversation.length) return;
+  if(confirm('تاریخچه گفتگو پاک شود؟')){
+    chatConversation = [];
+    saveChatHistory();
+    renderChatMessages();
+  }
+}
+
+function refreshAppUI(){
+  if(current!=null){
+    var exists = debtors.some(function(d){ return +d.id===+current; });
+    if(exists) renderDetail(); else { $('detail').classList.remove('active'); current=null; }
+  }
+  render();
+}
+
+function toolFindAccount(name){
+  if(!name || !String(name).trim()) return {error:'نام حساب داده نشده است'};
+  var q = String(name).trim().toLowerCase();
+  var exact = debtors.filter(function(d){ return d.name.toLowerCase()===q; });
+  if(exact.length===1) return {account: exact[0]};
+  if(exact.length>1) return {error:'چند حساب با نام دقیقاً یکسان پیدا شد، لطفاً مشخص‌تر بگویید'};
+  var partial = debtors.filter(function(d){ return d.name.toLowerCase().indexOf(q)!==-1; });
+  if(partial.length===1) return {account: partial[0]};
+  if(partial.length>1) return {error:'چند حساب مشابه پیدا شد: '+partial.map(function(d){return d.name;}).join('، ')+' — لطفاً نام دقیق‌تر بگویید'};
+  return {error:'حسابی با نام «'+name+'» پیدا نشد'};
+}
+
+function validNormalizedDate(v){
+  var s = String(v||'').trim();
+  var m = s.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);
+  if(!m) return false;
+  var y=Number(m[1]), mo=Number(m[2]), d=Number(m[3]);
+  return y>=1 && mo>=1 && mo<=12 && d>=1 && d<=31;
+}
+
+function sortedTx(d){
+  return d.transactions.slice().sort(function(a,b){ return String(a.date||'').localeCompare(String(b.date||'')); });
+}
+
+function executeChatTool(toolName, input){
+  input = input || {};
+  try{
+    if(toolName==='delete_account' || toolName==='delete_transaction' || toolName==='restore_backup'){
+      if(input.__confirmed_by_user !== true){
+        return {error:'تأیید صریح کاربر برای این عملیات لازم است؛ عملیات اجرا نشد'};
+      }
+      delete input.__confirmed_by_user;
+    }
+    if(toolName === 'add_account'){
+      var name = String(input.name||'').trim();
+      if(!name) return {error:'نام الزامی است'};
+      var dup = debtors.some(function(d){ return d.name.toLowerCase()===name.toLowerCase(); });
+      if(dup) return {error:'حسابی با این نام از قبل وجود دارد'};
+      var nd = {id:Date.now(), name:name, phone:String(input.phone||'').trim(), address:String(input.address||'').trim(), transactions:[]};
+      debtors.push(nd); save(); refreshAppUI();
+      return {success:true, message:'حساب «'+name+'» با موفقیت اضافه شد'};
+    }
+
+    if(toolName === 'add_transaction'){
+      var found = toolFindAccount(input.account_name);
+      if(found.error) return {error:found.error};
+      var d = found.account;
+      if(input.type!=='receipt' && input.type!=='debt') return {error:'نوع معامله باید receipt یا debt باشد'};
+      var amt = Number(input.amount);
+      if(!isFinite(amt) || amt<=0) return {error:'مبلغ نامعتبر است'};
+      var isR = input.type==='receipt';
+      var currency = input.currency==='USD' ? 'USD' : 'AFN';
+      var date = normalizeDateValue(input.date ? input.date : today());
+      if(!validNormalizedDate(date)) return {error:'تاریخ نامعتبر است؛ تاریخ را به شکل YYYY/MM/DD وارد کنید'};
+      var tx = {id:Date.now()+Math.floor(Math.random()*1000), date:date, currency:currency,
+        details:String(input.details||'').trim() || (isR?'رسید':'قرض'),
+        receipt:isR?amt:0, debtVal:isR?0:amt, page:String(input.page||'').trim()};
+      d.transactions.push(tx); save(); refreshAppUI();
+      return {success:true, message:(isR?'رسید':'قرض')+' به مبلغ '+num(amt)+' '+currency+' برای «'+d.name+'» ثبت شد'};
+    }
+
+    if(toolName === 'edit_account'){
+      var found2 = toolFindAccount(input.account_name);
+      if(found2.error) return {error:found2.error};
+      var d2 = found2.account;
+      if(input.new_name && String(input.new_name).trim()){
+        var nn = String(input.new_name).trim();
+        var dup2 = debtors.some(function(x){ return x!==d2 && x.name.toLowerCase()===nn.toLowerCase(); });
+        if(dup2) return {error:'حساب دیگری با این نام وجود دارد'};
+        d2.name = nn;
+      }
+      if(input.phone!==undefined) d2.phone = String(input.phone).trim();
+      if(input.address!==undefined) d2.address = String(input.address).trim();
+      save(); refreshAppUI();
+      return {success:true, message:'اطلاعات حساب «'+d2.name+'» ذخیره شد'};
+    }
+
+    if(toolName === 'delete_account'){
+      var found3 = toolFindAccount(input.account_name);
+      if(found3.error) return {error:found3.error};
+      var deletedName = found3.account.name;
+      debtors = debtors.filter(function(x){ return x!==found3.account; });
+      save(); refreshAppUI();
+      return {success:true, message:'حساب «'+deletedName+'» حذف شد'};
+    }
+
+    if(toolName === 'list_accounts'){
+      var query = String(input.query||'').trim().toLowerCase();
+      var list = query ? debtors.filter(function(d){ return searchItem(d, normalizeDigits(query)); }) : debtors;
+      var result = list.map(function(d){
+        var t = getTotals(d);
+        return {name:d.name, phone:d.phone, address:d.address,
+          receipt_afn:t.afnR, debt_afn:t.afnD, remaining_afn:t.afnRem,
+          receipt_usd:t.usdR, debt_usd:t.usdD, remaining_usd:t.usdRem};
+      });
+      return {accounts:result, count:result.length};
+    }
+
+    if(toolName === 'get_account_details'){
+      var found4 = toolFindAccount(input.account_name);
+      if(found4.error) return {error:found4.error};
+      var d4 = found4.account, t4 = getTotals(d4), s4 = sortedTx(d4);
+      var txList = s4.map(function(tx,i){
+        return {index:i+1, date:tx.date, type: tx.receipt>0?'receipt':'debt',
+          amount: tx.receipt>0?tx.receipt:tx.debtVal, currency:tx.currency, details:tx.details, page:tx.page};
+      });
+      return {name:d4.name, phone:d4.phone, address:d4.address, totals:t4, transactions:txList};
+    }
+
+    if(toolName === 'edit_transaction'){
+      var found5 = toolFindAccount(input.account_name);
+      if(found5.error) return {error:found5.error};
+      var d5 = found5.account, s5 = sortedTx(d5);
+      var idx5 = Number(input.transaction_index) - 1;
+      if(!isFinite(idx5) || idx5<0 || idx5>=s5.length) return {error:'شماره ردیف معامله نامعتبر است؛ ابتدا با get_account_details شماره درست را بگیرید'};
+      var tx5 = s5[idx5];
+      var isR5 = input.type ? input.type==='receipt' : (tx5.receipt>0);
+      var amt5 = input.amount!==undefined ? Number(input.amount) : (isR5?tx5.receipt:tx5.debtVal);
+      if(!isFinite(amt5) || amt5<=0) return {error:'مبلغ نامعتبر است'};
+      if(input.currency) tx5.currency = input.currency==='USD'?'USD':'AFN';
+      tx5.receipt = isR5?amt5:0; tx5.debtVal = isR5?0:amt5;
+      if(input.date){
+        var nd5 = normalizeDateValue(input.date);
+        if(!validNormalizedDate(nd5)) return {error:'تاریخ نامعتبر است؛ تاریخ را به شکل YYYY/MM/DD وارد کنید'};
+        tx5.date = nd5;
+      }
+      if(input.details!==undefined && String(input.details).trim()) tx5.details = String(input.details).trim();
+      if(input.page!==undefined) tx5.page = String(input.page).trim();
+      save(); refreshAppUI();
+      return {success:true, message:'معامله شماره '+input.transaction_index+' برای «'+d5.name+'» ویرایش شد'};
+    }
+
+    if(toolName === 'delete_transaction'){
+      var found6 = toolFindAccount(input.account_name);
+      if(found6.error) return {error:found6.error};
+      var d6 = found6.account, s6 = sortedTx(d6);
+      var idx6 = Number(input.transaction_index) - 1;
+      if(!isFinite(idx6) || idx6<0 || idx6>=s6.length) return {error:'شماره ردیف معامله نامعتبر است'};
+      var tx6 = s6[idx6];
+      var realIdx6 = d6.transactions.indexOf(tx6);
+      d6.transactions.splice(realIdx6, 1);
+      save(); refreshAppUI();
+      return {success:true, message:'معامله شماره '+input.transaction_index+' از «'+d6.name+'» حذف شد'};
+    }
+
+    if(toolName === 'get_summary'){
+      var tA=0,tD=0,uA=0,uD=0;
+      for(var i=0;i<debtors.length;i++){ var t=getTotals(debtors[i]); tA+=t.afnR; tD+=t.afnD; uA+=t.usdR; uD+=t.usdD; }
+      return {receipt_afn:tA, debt_afn:tD, remaining_afn:tA-tD, receipt_usd:uA, debt_usd:uD, remaining_usd:uA-uD, account_count:debtors.length};
+    }
+
+    if(toolName === 'create_backup'){
+      if(!debtors.length) return {error:'هیچ داده‌ای برای بکاپ گرفتن وجود ندارد'};
+      downloadBackup('✅ بکاپ ذخیره شد');
+      return {success:true, message:'فایل بکاپ ساخته و برای دانلود/اشتراک‌گذاری آماده شد'};
+    }
+
+    if(toolName === 'restore_backup'){
+      var raw = input.json_data;
+      if(!raw || !String(raw).trim()) return {error:'محتوای JSON بکاپ داده نشده است'};
+      var parsed;
+      try{ parsed = JSON.parse(raw); }catch(e){ return {error:'متن ارسالی یک JSON معتبر نیست'}; }
+      var normalized = normalizeData(parsed);
+      if(!normalized) return {error:'فرمت بکاپ نامعتبر است (ساختار debtors پیدا نشد)'};
+      debtors = normalized; save();
+      current = null; $('detail').classList.remove('active');
+      render();
+      return {success:true, message:'بازیابی انجام شد؛ تعداد حساب‌های بازیابی‌شده: '+debtors.length};
+    }
+
+    if(toolName === 'open_account_view'){
+      var foundV = toolFindAccount(input.account_name);
+      if(foundV.error) return foundV;
+      openDetail(foundV.account.id);
+      closeChat();
+      return {success:true, message:'صفحه حساب «'+foundV.account.name+'» باز شد'};
+    }
+
+    return {error:'ابزار ناشناخته'};
+  }catch(e){
+    return {error:'خطای داخلی هنگام اجرای عملیات'};
+  }
+}
+
+function renderChatMessages(){
+  var box = $('chatMessages');
+  if(!chatConversation.length){
+    if(!getApiKey()){
+      box.innerHTML = '<div class="chat-empty"><span class="empty-avatar">🤖👑</span>برای فعال شدن دستیار، یک کلید رایگان جیمینی وارد کنید.<br><br>'+
+        '<button onclick="promptForApiKey()" style="background:linear-gradient(180deg,#5cb8ff,#0d5ecb);color:#fff;border:2px solid #fff;border-radius:10px;padding:10px 16px;font-weight:bold;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.25);">⚙️ وارد کردن کلید API</button></div>';
+    } else {
+      box.innerHTML = '<div class="chat-empty"><span class="empty-avatar">🤖👑</span>سلام! من دستیار مدیریت این دفترم 🙂<br>می‌تونم حساب و معامله اضافه/ویرایش/حذف کنم، یا هر سوالی درباره حساب‌ها بپرسی جواب بدم.</div>';
+    }
+    return;
+  }
+  var h = '';
+  for(var i=0;i<chatConversation.length;i++){
+    var m = chatConversation[i];
+    if(m.role === 'function') continue;
+    var parts = m.parts || [];
+    for(var j=0;j<parts.length;j++){
+      var p = parts[j];
+      if(p.text){
+        h += '<div class="chat-msg '+(m.role==='user'?'user':'assistant')+'">'+esc(p.text)+'</div>';
+      } else if(p.functionCall){
+        var label = TOOL_LABELS[p.functionCall.name] || p.functionCall.name;
+        h += '<div class="chat-msg tool">🔧 '+esc(label)+'</div>';
+      }
+    }
+  }
+  box.innerHTML = h || '<div class="chat-empty">سلام! چطور می‌تونم کمکت کنم؟</div>';
+  box.scrollTop = box.scrollHeight;
+}
+
+function autoGrowChatInput(){
+  var el = $('chatInput');
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+document.addEventListener('input', function(e){
+  if(e.target && e.target.id === 'chatInput') autoGrowChatInput();
+});
+
+// ==== مدل رایگان و معتبر جیمینی ====
+var GEMINI_MODEL = 'gemini-2.0-flash';
+
+function convertSchemaToGemini(schema){
+  if(!schema || typeof schema !== 'object') return schema;
+  var out = {};
+  if(schema.type) out.type = String(schema.type).toUpperCase();
+  if(schema.description) out.description = schema.description;
+  if(schema.enum) out.enum = schema.enum;
+  if(schema.properties){
+    out.properties = {};
+    for(var k in schema.properties){ out.properties[k] = convertSchemaToGemini(schema.properties[k]); }
+  }
+  if(schema.items) out.items = convertSchemaToGemini(schema.items);
+  if(schema.required) out.required = schema.required;
+  return out;
+}
+function toolsForGemini(){
+  return [{ functionDeclarations: CHAT_TOOLS.map(function(t){
+    return { name:t.name, description:t.description, parameters: convertSchemaToGemini(t.input_schema) };
+  }) }];
+}
+
+function callGeminiAPI(contents){
+  var key = getApiKey();
+  var url = 'https://generativelanguage.googleapis.com/v1beta/models/'+GEMINI_MODEL+':generateContent';
+  return fetch(url, {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json', 'x-goog-api-key': key },
+    body: JSON.stringify({
+      contents: contents,
+      tools: toolsForGemini(),
+      systemInstruction: { parts:[{ text: CHAT_SYSTEM_PROMPT }] }
+    })
+  }).then(function(res){
+    return res.json().then(function(data){
+      if(!res.ok && !data.error){
+        data.error={message:'HTTP '+res.status+' '+(res.statusText||'خطا در پاسخ Gemini')};
+      }
+      return data;
+    });
+  });
+}
+
+function sendChatMessage(){
+  var input = $('chatInput');
+  var text = input.value.trim();
+  if(!text) return;
+
+  if(!getApiKey()){
+    promptForApiKey();
+    return;
+  }
+
+  input.value = ''; input.style.height = 'auto';
+
+  if(pendingDangerousCall){
+    var pending = pendingDangerousCall;
+    if(isExplicitChatConfirmation(text)){
+      pendingDangerousCall = null;
+      pending.args = pending.args || {};
+      pending.args.__confirmed_by_user = true;
+
+      chatConversation.push({role:'user', parts:[{text:text}]});
+      saveChatHistory();
+      renderChatMessages();
+
+      var confirmBtn = $('chatSendBtn');
+      confirmBtn.disabled = true;
+      var confirmBox = $('chatMessages');
+      var confirmThinking = document.createElement('div');
+      confirmThinking.className = 'chat-msg thinking';
+      confirmThinking.textContent = 'در حال انجام عملیات...';
+      confirmBox.appendChild(confirmThinking);
+      confirmBox.scrollTop = confirmBox.scrollHeight;
+
+      var result = executeChatTool(pending.name, pending.args);
+      chatConversation.push({
+        role:'user',
+        parts:[{functionResponse:{name:pending.name, response:result}}]
+      });
+      saveChatHistory();
+      confirmThinking.remove();
+
+      var finalThinking = document.createElement('div');
+      finalThinking.className = 'chat-msg thinking';
+      finalThinking.textContent = 'در حال فکر کردن...';
+      confirmBox.appendChild(finalThinking);
+      confirmBox.scrollTop = confirmBox.scrollHeight;
+      runAgentLoop(0, finalThinking, confirmBtn);
+      return;
+    }
+
+    if(isExplicitChatCancellation(text)){
+      pendingDangerousCall = null;
+      chatConversation.push({role:'user', parts:[{text:text}]});
+      chatConversation.push({role:'model', parts:[{text:'لغو شد؛ هیچ تغییری در اطلاعات انجام نشد.'}]});
+      saveChatHistory();
+      renderChatMessages();
+      return;
+    }
+
+    pendingDangerousCall = null;
+    chatConversation.push({role:'user', parts:[{text:text}]});
+    chatConversation.push({role:'model', parts:[{text:'تأیید واضح دریافت نشد؛ عملیات لغو شد و هیچ تغییری در اطلاعات انجام نشد.'}]});
+    saveChatHistory();
+    renderChatMessages();
+    return;
+  }
+
+  chatConversation.push({role:'user', parts:[{text:text}]});
+  saveChatHistory();
+  renderChatMessages();
+
+  var sendBtn = $('chatSendBtn');
+  sendBtn.disabled = true;
+
+  var box = $('chatMessages');
+  var thinkingEl = document.createElement('div');
+  thinkingEl.className = 'chat-msg thinking';
+  thinkingEl.textContent = 'در حال فکر کردن...';
+  box.appendChild(thinkingEl);
+  box.scrollTop = box.scrollHeight;
+
+  runAgentLoop(0, thinkingEl, sendBtn);
+}
+
+function runAgentLoop(depth, thinkingEl, sendBtn, retryCount){
+  retryCount = retryCount || 0;
+  if(depth > 6){
+    if(thinkingEl) thinkingEl.remove();
+    showChatError('تعداد مراحل عملیات زیاد شد؛ لطفاً درخواست را ساده‌تر یا در چند پیام مطرح کنید.');
+    sendBtn.disabled = false;
+    return;
+  }
+  callGeminiAPI(chatConversation).then(function(data){
+    if(data && data.error){
+      var msg = String(data.error.message || '');
+      var isOverloaded = /overload|high demand|503|unavailable|429|quota/i.test(msg);
+      if(isOverloaded && retryCount < 3){
+        if(thinkingEl) thinkingEl.textContent = 'سرور شلوغ است، دوباره تلاش می‌کنم... ('+(retryCount+1)+'/3)';
+        setTimeout(function(){ runAgentLoop(depth, thinkingEl, sendBtn, retryCount+1); }, 2500);
+        return;
+      }
+      if(thinkingEl) thinkingEl.remove();
+      showChatError('خطا از سرور: '+(msg || 'کلید API نامعتبر است یا مشکلی پیش آمد'));
+      sendBtn.disabled = false;
+      return;
+    }
+    if(thinkingEl) thinkingEl.remove();
+    var candidate = data && Array.isArray(data.candidates) ? data.candidates[0] : null;
+    var parts = candidate && candidate.content && candidate.content.parts;
+    if(!parts || !parts.length){
+      showChatError('پاسخی دریافت نشد. دوباره تلاش کنید.');
+      sendBtn.disabled = false;
+      return;
+    }
+
+    chatConversation.push({role:'model', parts: parts});
+    saveChatHistory();
+    renderChatMessages();
+
+    var funcCalls = parts.filter(function(p){ return !!p.functionCall; });
+
+    if(!funcCalls.length){
+      sendBtn.disabled = false;
+      return;
+    }
+
+    var box = $('chatMessages');
+    var busyEl = document.createElement('div');
+    busyEl.className = 'chat-msg thinking';
+    busyEl.textContent = 'در حال انجام عملیات...';
+    box.appendChild(busyEl);
+    box.scrollTop = box.scrollHeight;
+
+    var dangerousCall = null;
+    for(var di=0; di<funcCalls.length; di++){
+      var dn = funcCalls[di].functionCall.name;
+      if(dn==='delete_account' || dn==='delete_transaction' || dn==='restore_backup'){
+        dangerousCall = funcCalls[di].functionCall;
+        break;
+      }
+    }
+
+    if(dangerousCall){
+      pendingDangerousCall = {
+        name: dangerousCall.name,
+        args: dangerousCall.args || {}
+      };
+
+      var warning = '⚠️ برای اجرای «'+dangerousToolLabel(dangerousCall.name)+'» تأیید صریح لازم است.';
+      if(dangerousCall.name==='delete_account' && dangerousCall.args && dangerousCall.args.account_name){
+        warning += '\nحساب «'+String(dangerousCall.args.account_name)+'» و تمام معاملاتش حذف می‌شود.';
+      } else if(dangerousCall.name==='delete_transaction' && dangerousCall.args){
+        warning += '\nمعامله شماره '+String(dangerousCall.args.transaction_index||'')+' از حساب «'+String(dangerousCall.args.account_name||'')+'» حذف می‌شود.';
+      } else if(dangerousCall.name==='restore_backup'){
+        warning += '\nتمام داده‌های فعلی با اطلاعات بکاپ جایگزین می‌شود.';
+      }
+      warning += '\nاگر مطمئن هستی بنویس «بله» یا «تایید». برای لغو «نه» بنویس.';
+
+      chatConversation.push({role:'model', parts:[{text:warning}]});
+      saveChatHistory();
+      renderChatMessages();
+      busyEl.remove();
+      sendBtn.disabled = false;
+      return;
+    }
+
+    var responseParts = funcCalls.map(function(fc){
+      var result = executeChatTool(fc.functionCall.name, fc.functionCall.args || {});
+      return { functionResponse: { name: fc.functionCall.name, response: result } };
+    });
+
+    chatConversation.push({role:'user', parts: responseParts});
+    saveChatHistory();
+
+    busyEl.remove();
+    var thinkingEl2 = document.createElement('div');
+    thinkingEl2.className = 'chat-msg thinking';
+    thinkingEl2.textContent = 'در حال فکر کردن...';
+    box.appendChild(thinkingEl2);
+    box.scrollTop = box.scrollHeight;
+
+    runAgentLoop(depth+1, thinkingEl2, sendBtn);
+  }).catch(function(err){
+    if(thinkingEl) thinkingEl.remove();
+    showChatError('خطا در ارتباط. اتصال اینترنت را بررسی کنید.');
+    sendBtn.disabled = false;
+  });
+}
+
+function showChatError(msg){
+  var box = $('chatMessages');
+  var errEl = document.createElement('div');
+  errEl.className = 'chat-msg error';
+  errEl.textContent = msg;
+  box.appendChild(errEl);
+  box.scrollTop = box.scrollHeight;
+}
+
+// ========================== قفل برنامه (PIN) ==========================
+function hashPin(pin){
+  if(window.crypto && window.crypto.subtle){
+    var enc = new TextEncoder().encode('khsalt_'+pin);
+    return crypto.subtle.digest('SHA-256', enc).then(function(buf){
+      return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+    });
+  }
+  var s = 'khsalt_'+pin, h=0;
+  for(var i=0;i<s.length;i++){ h = (h*31 + s.charCodeAt(i)) >>> 0; }
+  return Promise.resolve('fb'+h.toString(16));
+}
+
+function webauthnSupported(){
+  return !!(window.PublicKeyCredential && navigator.credentials && navigator.credentials.create);
+}
+function randomBytes(len){
+  var a = new Uint8Array(len);
+  if(window.crypto && crypto.getRandomValues) crypto.getRandomValues(a);
+  else for(var i=0;i<len;i++) a[i]=Math.floor(Math.random()*256);
+  return a;
+}
+function bufToB64(buf){
+  var bytes = new Uint8Array(buf), bin='';
+  for(var i=0;i<bytes.length;i++) bin+=String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+function b64ToBuf(b64){
+  var bin = atob(b64), bytes = new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+  return bytes.buffer;
+}
+function isFaceIDEnabled(){ return !!localStorage.getItem('khatabook_faceid_id'); }
+
+function enableFaceID(onDone){
+  if(!webauthnSupported()){ toast('Face ID/Touch ID روی این دستگاه یا مرورگر پشتیبانی نمی‌شود','error'); return; }
+  navigator.credentials.create({
+    publicKey:{
+      challenge: randomBytes(32),
+      rp:{ name:'دفتر کهاته سلطان' },
+      user:{ id: randomBytes(16), name:'کاربر دفتر', displayName:'کاربر دفتر' },
+      pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],
+      authenticatorSelection:{ authenticatorAttachment:'platform', userVerification:'required' },
+      timeout:60000,
+      attestation:'none'
+    }
+  }).then(function(cred){
+    localStorage.setItem('khatabook_faceid_id', bufToB64(cred.rawId));
+    toast('✅ Face ID/Touch ID فعال شد','success');
+    if(onDone) onDone(true);
+  }).catch(function(err){
+    console.error('webauthn create error', err);
+    toast('فعال‌سازی Face ID لغو شد یا با خطا مواجه شد','error');
+    if(onDone) onDone(false);
+  });
+}
+
+function disableFaceID(){
+  localStorage.removeItem('khatabook_faceid_id');
+  toast('Face ID غیرفعال شد','success');
+}
+
+function tryFaceIDUnlock(){
+  var idB64 = localStorage.getItem('khatabook_faceid_id');
+  if(!idB64) return;
+  var msgEl = $('lockMsg');
+  if(msgEl) msgEl.textContent = '';
+  navigator.credentials.get({
+    publicKey:{
+      challenge: randomBytes(32),
+      allowCredentials:[{ id:b64ToBuf(idB64), type:'public-key' }],
+      userVerification:'required',
+      timeout:60000
+    }
+  }).then(function(){
+    hideLock();
+  }).catch(function(err){
+    console.error('webauthn get error', err);
+    var m = $('lockMsg'); if(m) m.textContent='Face ID ناموفق بود؛ رمز را وارد کنید';
+  });
+}
+
+function faceIDSettings(){
+  var hash = localStorage.getItem('khatabook_pin_hash');
+  if(!hash){ toast('اول از دکمه 🔒 قفل، یک رمز تنظیم کنید','error'); return; }
+  var enabled = isFaceIDEnabled();
+  var body = '<h3>🆔 Face ID / Touch ID</h3>'+
+    '<p style="font-size:12px;color:#666;margin:0 0 10px;">می‌توانید به‌جای وارد کردن رمز، با Face ID یا Touch ID دستگاه‌تان وارد برنامه شوید. رمز عبور همیشه به‌عنوان راه جایگزین باقی می‌ماند.</p>';
+  if(enabled){
+    body += '<p style="font-size:13px;color:var(--green);font-weight:bold;">✅ در حال حاضر فعال است</p>'+
+      '<div class="buttons"><button class="cancel" onclick="closeModal()">بستن</button><button class="confirm red" id="disableFaceBtn">غیرفعال کردن</button></div>';
+  } else {
+    body += '<div class="buttons"><button class="cancel" onclick="closeModal()">بستن</button><button class="confirm" id="enableFaceBtn">فعال‌سازی</button></div>';
+  }
+  modal(body);
+  var eb=$('enableFaceBtn'); if(eb) eb.onclick=function(){ enableFaceID(function(ok){ if(ok) closeModal(); }); };
+  var db=$('disableFaceBtn'); if(db) db.onclick=function(){ disableFaceID(); closeModal(); };
+}
+
+function initLock(){
+  var hash = localStorage.getItem('khatabook_pin_hash');
+  $('lockScreen').classList.remove('hidden');
+  if(hash) renderLockEntry(); else renderLockSetup();
+}
+function hideLock(){ $('lockScreen').classList.add('hidden'); }
+function lockNow(){ $('lockScreen').classList.remove('hidden'); renderLockEntry(); }
+
+function renderLockSetup(){
+  $('lockBox').innerHTML =
+    '<h2>🔒 تنظیم رمز عبور</h2>'+
+    '<p>یک رمز ۴ تا ۶ رقمی برای محافظت از این برنامه تعیین کنید</p>'+
+    '<input id="pin1" type="password" inputmode="numeric" maxlength="6" placeholder="رمز جدید">'+
+    '<input id="pin2" type="password" inputmode="numeric" maxlength="6" placeholder="تکرار رمز">'+
+    '<div class="lock-msg" id="lockMsg"></div>'+
+    '<button id="lockSetupBtn">ثبت رمز</button>';
+  $('lockSetupBtn').onclick = submitLockSetup;
+  var enterHandler = function(e){ if(e.key==='Enter') submitLockSetup(); };
+  $('pin1').addEventListener('keydown', enterHandler);
+  $('pin2').addEventListener('keydown', enterHandler);
+  setTimeout(function(){ var el=$('pin1'); if(el) el.focus(); }, 200);
+}
+
+function submitLockSetup(){
+  var p1 = $('pin1').value.trim(), p2 = $('pin2').value.trim();
+  if(!/^\d{4,6}$/.test(p1)){ $('lockMsg').textContent='رمز باید ۴ تا ۶ رقم باشد'; return; }
+  if(p1!==p2){ $('lockMsg').textContent='رمزها یکسان نیستند'; return; }
+  hashPin(p1).then(function(h){
+    localStorage.setItem('khatabook_pin_hash', h);
+    hideLock();
+    toast('✅ رمز تنظیم شد','success');
+    if(webauthnSupported()){
+      setTimeout(function(){
+        modal('<h3>🆔 Face ID / Touch ID</h3>'+
+          '<p style="font-size:12px;color:#666;margin:0 0 10px;">می‌خواهید علاوه بر رمز، با Face ID یا Touch ID هم وارد شوید؟</p>'+
+          '<div class="buttons"><button class="cancel" onclick="closeModal()">فعلاً نه</button><button class="confirm" id="enableFaceBtn2">فعال‌سازی</button></div>');
+        var eb=$('enableFaceBtn2'); if(eb) eb.onclick=function(){ enableFaceID(function(){ closeModal(); }); };
+      }, 400);
+    }
+  });
+}
+
+function renderLockEntry(){
+  var faceBtn = isFaceIDEnabled()
+    ? '<button id="faceUnlockBtn" type="button" style="background:linear-gradient(180deg,#3de0d6,#088a80);margin-bottom:8px;">🆔 ورود با Face ID</button>'
+    : '';
+  $('lockBox').innerHTML =
+    '<h2>🔒 دفتر قفل است</h2>'+
+    faceBtn+
+    '<input id="pinEntry" type="password" inputmode="numeric" maxlength="6" placeholder="رمز را وارد کنید">'+
+    '<div class="lock-msg" id="lockMsg"></div>'+
+    '<button id="lockEntryBtn">باز کردن</button>'+
+    '<div class="lock-sub">رمز را فراموش کرده‌اید؟ <a id="resetLockLink">بازنشانی رمز</a></div>';
+  $('lockEntryBtn').onclick = submitLockEntry;
+  $('resetLockLink').onclick = confirmResetLock;
+  var fb = $('faceUnlockBtn'); if(fb) fb.onclick = tryFaceIDUnlock;
+  var el = $('pinEntry');
+  el.addEventListener('keydown', function(e){ if(e.key==='Enter') submitLockEntry(); });
+  setTimeout(function(){ el.focus(); }, 200);
+  if(isFaceIDEnabled()) setTimeout(tryFaceIDUnlock, 300);
+}
+
+function submitLockEntry(){
+  var p = $('pinEntry').value.trim();
+  var hash = localStorage.getItem('khatabook_pin_hash');
+  hashPin(p).then(function(h){
+    if(h===hash){ hideLock(); }
+    else { $('lockMsg').textContent='رمز اشتباه است'; $('pinEntry').value=''; $('pinEntry').focus(); }
+  });
+}
+
+function confirmResetLock(){
+  if(confirm('⚠️ بازنشانی، رمز فعلی را پاک می‌کند (داده‌های حساب‌ها دست‌نخورده می‌مانند). آیا مطمئن هستید؟')){
+    localStorage.removeItem('khatabook_pin_hash');
+    renderLockSetup();
+  }
+}
+
+function changePin(){
+  var hash = localStorage.getItem('khatabook_pin_hash');
+  if(!hash){ toast('هنوز رمزی تنظیم نشده؛ از دکمه 🔒 قفل استفاده کنید','error'); return; }
+  modal('<h3>🔑 تغییر رمز عبور</h3>'+
+    '<label>رمز فعلی</label><input id="oldPin" type="password" inputmode="numeric" maxlength="6" dir="ltr">'+
+    '<label>رمز جدید</label><input id="newPin1" type="password" inputmode="numeric" maxlength="6" dir="ltr">'+
+    '<label>تکرار رمز جدید</label><input id="newPin2" type="password" inputmode="numeric" maxlength="6" dir="ltr">'+
+    '<div class="buttons"><button class="cancel" onclick="closeModal()">لغو</button><button class="confirm" id="savePinBtn">ذخیره</button></div>');
+  $('savePinBtn').onclick = function(){
+    var op=$('oldPin').value.trim(), n1=$('newPin1').value.trim(), n2=$('newPin2').value.trim();
+    hashPin(op).then(function(oh){
+      if(oh!==hash){ toast('رمز فعلی اشتباه است','error'); return; }
+      if(!/^\d{4,6}$/.test(n1)){ toast('رمز جدید باید ۴ تا ۶ رقم باشد','error'); return; }
+      if(n1!==n2){ toast('رمزهای جدید یکسان نیستند','error'); return; }
+      hashPin(n1).then(function(nh){
+        localStorage.setItem('khatabook_pin_hash', nh);
+        closeModal();
+        toast('✅ رمز تغییر کرد','success');
+      });
+    });
+  };
+  setTimeout(function(){ var el=$('oldPin'); if(el) el.focus(); }, 200);
+}
+
+loadChatHistory();
+load();
+applyDarkMode();
+applyZoom();
+var sortSelEl=$('sortSel'); if(sortSelEl) sortSelEl.value=sortMode; syncSortLabel();
+render();
+initLock();
+</script>
+
+</body>
+</html>
